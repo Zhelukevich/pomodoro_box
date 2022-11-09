@@ -1,0 +1,49 @@
+@font-face {
+	font-family: 'SF UI Display';
+	src: local('SF UI Display Bold'), local('SFUIDisplay-Bold'),
+		url('../fonts/SFUIDisplay-Bold.woff2') format('woff2'),
+		url('../fonts/SFUIDisplay-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SF UI Display';
+	src: local('SF UI Display Medium'), local('SFUIDisplay-Medium'),
+		url('../fonts/SFUIDisplay-Medium.woff2') format('woff2'),
+		url('../fonts/SFUIDisplay-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SF UI Display';
+	src: local('SF UI Display Regular'), local('SFUIDisplay-Regular'),
+		url('../fonts/SFUIDisplay-Regular.woff2') format('woff2'),
+		url('../fonts/SFUIDisplay-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SF UI Display';
+	src: local('SF UI Text Light'), local('SFUIText-Light'),
+		url('../fonts/SFUIDisplay-Light.woff2') format('woff2'),
+		url('../fonts/SFUIDisplay-Light.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SF UI Display';
+	src: local('SF UI Display Thin'), local('SFUIDisplay-Thin'),
+		url('../fonts/SFUIDisplay-Thin.woff2') format('woff2'),
+		url('../fonts/SFUIDisplay-Thin.woff') format('woff');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}

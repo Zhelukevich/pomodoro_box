@@ -1,0 +1,49 @@
+@import './_variables';
+@import './_mixin';
+@import './_fonts';
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+button {
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+img {
+	max-width: 100%;
+	object-fit: cover;
+}
+
+iframe {
+	display: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'SF UI Display', Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	color: $text-color;
+}

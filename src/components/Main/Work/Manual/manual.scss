@@ -1,0 +1,28 @@
+@import '../../../../styles/global.main.scss';
+
+.title {
+	margin: 0 0 3px 0;
+	@include text-bold;
+	color: $text-color;
+}
+
+.list {
+	margin-bottom: 25px;
+
+	li {
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 2.0625rem;
+		color: $text-color;
+	}
+
+	li::before {
+		content: "\2022";
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 2.0625rem;
+		color: $red;
+		margin-inline-end: 15px;
+	}
+
+}

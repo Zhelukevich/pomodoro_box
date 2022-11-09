@@ -1,0 +1,23 @@
+@import '../../../../styles/global.main.scss';
+
+.hederTimer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 55px;
+	padding: 0 40px;
+	background-color: $gray-light;
+
+	.task {
+		@include text;
+		font-weight: 700;
+		color: $white;
+	}
+
+	.number {
+		@include text;
+		font-weight: 400;
+		color: $white;
+	}
+}

@@ -1,0 +1,18 @@
+@mixin container {
+	max-width: 1340px;
+	margin: 0 auto;
+	padding: 0 30px;
+}
+
+@mixin text {
+	font-family: 'SF UI Display';
+	font-size: 1rem;
+	line-height: 1.0625rem;
+}
+
+@mixin text-bold {
+	font-family: 'SF UI Display';
+	font-weight: 700;
+	font-size: 1.5rem;
+	line-height: 2.0625rem;
+}

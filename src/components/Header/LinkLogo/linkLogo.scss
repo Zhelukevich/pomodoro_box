@@ -1,0 +1,20 @@
+@import '../../../styles/global.main.scss';
+
+.link {
+	display: flex;
+	align-items: center;
+	font-weight: 300;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+	color: $red;
+	transition: color 0.3s linear;
+
+	svg {
+		margin-right: 12px;
+	}
+}
+
+.link:hover {
+	color: $dark-red;
+
+}
