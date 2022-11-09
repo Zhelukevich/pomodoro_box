@@ -4,7 +4,7 @@ import { App } from '../App';
 
 
 window.addEventListener('load', () => {
-	ReactDOM.render(document.getElementById('root'), <App />);
+	ReactDOM.render(<App />, document.getElementById('root'));
 });
 
 

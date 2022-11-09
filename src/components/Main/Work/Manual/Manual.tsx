@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './manual.scss'
 
-export function Manual() {
+interface IManualProps {
+	taskCount: number;
+}
+
+export function Manual({ taskCount }: IManualProps) {
 	return (
 		<>
-			<h1 className={styles.title}>Ура! Теперь можно начать работать:</h1>
+			<h1 className={styles.title}>Ура! Теперь можно начать работать: <b>{taskCount}</b></h1>
 			<ul className={styles.list}>
 				<li>Выберите категорию и напишите название текущей задачи</li>
 				<li>	Запустите таймер («помидор»)</li>
