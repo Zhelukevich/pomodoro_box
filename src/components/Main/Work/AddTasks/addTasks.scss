@@ -3,7 +3,7 @@
 .from {
 	display: flex;
 	flex-direction: column;
-	width: 370px;
+	max-width: 370px;
 	margin-bottom: 25px;
 
 	.input {

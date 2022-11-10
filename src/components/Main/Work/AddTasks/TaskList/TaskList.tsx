@@ -1,18 +1,26 @@
 import React from 'react'
-import { TaskItem } from './TaskItem';
+import { Task } from './Task';
+import styles from './tasklist.scss';
 
-interface ITaskList {
-	tasks: Task[];
+
+interface ITaskListProps {
+	items: ITask[];
+	removeTask: (id: number) => void;
 }
 
-export function TaskList({ tasks }: ITaskList) {
+export function TaskList({ items, removeTask }: ITaskListProps) {
 	return (
-		<ul>
+		<ul className={styles.tasksList}>
 			{
-				tasks.map((task) => {
-					<TaskItem task={task} />
-				})
+				items.map(task =>
+					<Task
+						key={task.id}
+						removeTask={removeTask}
+						{...task}
+					/>
+				)
 			}
+
 		</ul>
 	)
 }

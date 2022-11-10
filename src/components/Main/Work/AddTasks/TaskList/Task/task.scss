@@ -1,0 +1,45 @@
+@import '../../../../../../styles/global.main.scss';
+
+.task {
+	display: flex;
+	max-width: 370px;
+	height: 55px;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid $gray-light;
+
+	.block {
+		display: flex;
+		align-items: center;
+
+		.count {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			border: 1px solid $gray-light;
+			margin-right: 10px;
+			font-weight: 300;
+			@include text;
+			color: $text-color;
+		}
+
+		.title {
+			margin: 0;
+			font-weight: 300;
+			@include text;
+			color: $text-color;
+		}
+
+	}
+}
+
+.circle {
+	transition: fill 1s linear;
+}
+
+.task:last-child {
+	border-bottom: 1px solid $gray-light;
+}

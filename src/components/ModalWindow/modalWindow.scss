@@ -1,0 +1,58 @@
+@import '../../styles/global.main.scss';
+
+.modalOverlay {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 4;
+
+	.modalWindow {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 350px;
+		position: absolute;
+		padding: 25px 0;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: $white;
+	}
+
+	.btnExit {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+	}
+
+	.title {
+		margin: 0;
+		margin-bottom: 25px;
+		font-weight: 400;
+		font-size: 1.5rem;
+		line-height: 1.0625rem;
+		color: $text-color;
+	}
+
+	.btnDelete {
+		width: 162px;
+		height: 55px;
+		background-color: $red;
+		margin-bottom: 10px;
+		font-weight: 500;
+		@include text;
+		color: #FFFFFF;
+	}
+
+	.btnEsc {
+		border-bottom: 1px solid $text-color;
+		font-weight: 300;
+		@include text;
+		color: $text-color;
+	}
+}

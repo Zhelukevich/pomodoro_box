@@ -14,6 +14,7 @@ function AppComponent() {
 				<Work />
 				<Timer />
 			</Main>
+
 		</>
 	);
 }
