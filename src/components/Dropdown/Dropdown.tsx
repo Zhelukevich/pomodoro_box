@@ -12,7 +12,6 @@ interface IDropdownProps {
 const NOOP = () => { };
 
 export function Dropdown({ button, children, isOpen, onOpen = NOOP, onClose = NOOP }: IDropdownProps) {
-	const ref = useRef<HTMLDivElement>(null);
 	const [isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
 	React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
 	React.useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen]);
@@ -23,31 +22,19 @@ export function Dropdown({ button, children, isOpen, onOpen = NOOP, onClose = NO
 		}
 	}
 
-	React.useEffect(() => {
-		function handleClick(event: MouseEvent) {
-			if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-				onClose?.()
-			}
-		}
-
-		document.addEventListener('click', handleClick);
-
-		return () => {
-			document.removeEventListener('click', handleClick);
-		}
-	}, []);
-
 	return (
-		<div className={styles.container} ref={ref}>
+		<div className={styles.container}>
 			<div onClick={handleOpen}>
 				{button}
 			</div>
 			{isDropdownOpen && (
-				// <div className={styles.listContainer}>
-				<div className={styles.list}>
-					{children}
+				<div className={styles.listContainer}>
+					<div
+						className={styles.list}
+					>
+						{children}
+					</div>
 				</div>
-				// </div>
 			)}
 		</div>
 	);

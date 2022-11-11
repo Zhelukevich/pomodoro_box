@@ -1,14 +1,16 @@
-// .container {
-// 	width: 100%;
-// 	flex: 1 1 0%;
-// }
+.container {
+	display: flex;
+	width: 100%;
+	flex: 1 1 0%;
+	justify-content: flex-end;
+}
 
-// .listContainer {
-// 	position: relative;
-// }
+.listContainer {
+	position: relative;
+}
 
 .list {
-	position: relative;
+	position: absolute;
 	left: 0;
 	top: 0;
 	width: 100%;

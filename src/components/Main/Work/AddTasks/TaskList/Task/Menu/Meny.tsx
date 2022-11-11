@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown } from '../../../../../../Dropdown';
 import { MenuDropdown } from './MenuDropdown';
 import styles from './meny.scss';
 
 export function Meny() {
+
 	return (
 		<Dropdown
 			button={
