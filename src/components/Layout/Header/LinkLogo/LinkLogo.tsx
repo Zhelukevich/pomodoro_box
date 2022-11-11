@@ -1,9 +1,11 @@
 import React from 'react';
-import styles from './linkLogo.scss'
+import styles from './linkLogo.scss';
+
+import { Link } from 'react-router-dom';
 
 export function LinkLogo() {
 	return (
-		<a className={styles.link} href="/">
+		<Link className={styles.link} to="/">
 			<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<g clipPath="url(#clip0_7727_170)">
 					<path d="M38.9151 23.2834C38.9151 33.7058 30.466 40 20.0437 40C9.62098 40 1.17188 31.5509 1.17188 21.1282C1.17188 10.7059 9.88496 4.2981 20.3073 4.2981C30.73 4.2981 38.9151 12.8607 38.9151 23.2834Z" fill="#DC3E22" />
@@ -16,6 +18,6 @@ export function LinkLogo() {
 					</clipPath>
 				</defs>
 			</svg>
-			pomodoro_box</a>
+			pomodoro_box</Link>
 	)
 }

@@ -10,6 +10,5 @@ export function Work() {
 			<Manual />
 			<AddTasks />
 		</div>
-
 	)
 }
