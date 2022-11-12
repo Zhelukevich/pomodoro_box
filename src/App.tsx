@@ -8,6 +8,8 @@ import { StatisticsPage } from './pages/StatisticsPage';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 function AppWrap() {
 	const [mounted, setMounted] = useState(false);
@@ -37,7 +39,10 @@ function AppWrap() {
 
 function AppComponent() {
 	return (
+		// <Provider store={store}>
 		<AppWrap />
+		// </Provider>
+
 	);
 }
 
