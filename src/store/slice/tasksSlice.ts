@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 
 export type ITask = {
@@ -10,11 +11,11 @@ export type ITask = {
 }
 
 interface ITasksState {
-	tasks: ITask[]
+	items: ITask[]
 }
 
 const initialTasksState: ITasksState = {
-	tasks: []
+	items: []
 }
 
 export const tasksSlice = createSlice({
@@ -22,7 +23,7 @@ export const tasksSlice = createSlice({
 	initialState: initialTasksState,
 	reducers: {
 		addTask: (state, action: PayloadAction<ITask>) => {
-			state.tasks.push(action.payload);
+			state.items.push(action.payload);
 		},
 		removeTask: (state, action: PayloadAction<ITask>) => {
 
@@ -31,5 +32,7 @@ export const tasksSlice = createSlice({
 })
 
 export const { addTask, removeTask } = tasksSlice.actions;
+
+export const tasks = (state: RootState) => state.tasks
 
 export default tasksSlice.reducer;

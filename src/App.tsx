@@ -35,13 +35,11 @@ function AppWrap() {
 }
 
 
-
-
 function AppComponent() {
 	return (
-		// <Provider store={store}>
-		<AppWrap />
-		// </Provider>
+		<Provider store={store}>
+			<AppWrap />
+		</Provider>
 
 	);
 }

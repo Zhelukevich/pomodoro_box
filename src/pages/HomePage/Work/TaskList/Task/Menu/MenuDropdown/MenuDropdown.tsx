@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ModalWindow } from '../../../../../../../../components/ModalWindow';
+import { ModalWindow } from '../../../../../../../components/ModalWindow';
 import styles from './menudropdown.scss';
 
 interface IMenuDropdownProps {

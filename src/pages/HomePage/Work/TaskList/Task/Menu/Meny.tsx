@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown } from '../../../../../../../components/Dropdown';
+import { Dropdown } from '../../../../../../components/Dropdown';
 import { MenuDropdown } from './MenuDropdown';
 import styles from './meny.scss';
 

@@ -1,23 +1,22 @@
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
+import { useAppDispatch } from '../../../../hooks';
+import { addTask } from '../../../../store/slice/tasksSlice';
 import styles from './addTasks.scss';
-import { TaskList } from './TaskList';
 
 export function AddTasks() {
 	const [value, setVelue] = useState('');
-	const [tasks, setTasks] = useState<ITask[]>([]);
+
+	const dispatch = useAppDispatch();
 
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const addTask = () => {
-		if (value) {
-			setTasks([...tasks, {
-				id: Date.now(),
-				title: value,
-				completed: false,
-			}])
-			setVelue('')
-		}
-	}
+	const defaultTask = {
+		id: Date.now(),
+		title: value,
+		count: 1,
+		completed: false,
+		edit: false
+	};
 
 	const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
 		setVelue(event.target.value);
@@ -27,8 +26,13 @@ export function AddTasks() {
 		event.preventDefault();
 	}
 
-	const removeTask = (id: number): void => {
-		setTasks(tasks.filter(task => task.id !== id))
+	// const removeTask = (id: number): void => {
+	// 	setTasks(tasks.filter(task => task.id !== id))
+	// }
+
+	function addNewTask() {
+		dispatch(addTask(defaultTask));
+		setVelue('');
 	}
 
 	useEffect(() => {
@@ -53,17 +57,12 @@ export function AddTasks() {
 				<button
 					className={styles.btn}
 					type='submit'
-					onClick={addTask}
+					onClick={addNewTask}
 				>
 					Добавить
 				</button>
 
 			</form>
-
-			<TaskList
-				items={tasks}
-				removeTask={removeTask}
-			/>
 		</>
 	)
 }
