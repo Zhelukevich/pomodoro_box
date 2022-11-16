@@ -43,3 +43,11 @@
 .task:last-child {
 	border-bottom: 1px solid $gray-light;
 }
+
+.input {
+	width: 100%;
+	height: 30px;
+	font-weight: 400;
+	@include text;
+	color: $text-color;
+}

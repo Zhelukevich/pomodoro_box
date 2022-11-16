@@ -27,10 +27,18 @@
 				color: $gray;
 			}
 
+			.btn:disabled {
+				cursor: default;
+
+			}
+
+			.btn:disabled svg path {
+				fill: $gray-light;
+			}
+
 			.btn svg {
 				margin-right: 8px;
 			}
-
 		}
 
 		.dropdownItem:hover {
@@ -53,4 +61,30 @@
 		transform: rotate(135deg);
 		background: linear-gradient(45deg, $white 50%, rgba(255, 255, 255, 0) 50%);
 	}
+}
+
+.title {
+	margin: 0;
+	margin-bottom: 25px;
+	font-weight: 400;
+	font-size: 1.5rem;
+	line-height: 1.0625rem;
+	color: $text-color;
+}
+
+.btnDelete {
+	width: 162px;
+	height: 55px;
+	background-color: $red;
+	margin-bottom: 10px;
+	font-weight: 500;
+	@include text;
+	color: #FFFFFF;
+}
+
+.btnEsc {
+	border-bottom: 1px solid $text-color;
+	font-weight: 300;
+	@include text;
+	color: $text-color;
 }

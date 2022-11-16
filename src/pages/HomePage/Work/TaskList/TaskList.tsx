@@ -10,16 +10,12 @@ export function TaskList() {
 
 	return (
 		<ul className={styles.tasksList}>
-			{
-				tasksList.map((task: ITask) => (
-					<Task
-						key={task.id}
-						task={task}
-					/>
-				))
-
-			}
-
+			{tasksList.map((task: ITask) => (
+				<Task
+					key={task.id}
+					task={task}
+				/>
+			))}
 		</ul>
 	)
 }

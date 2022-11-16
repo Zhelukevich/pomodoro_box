@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import { useAppDispatch } from '../../../../hooks';
 import { addTask } from '../../../../store/slice/tasksSlice';
+import { generateId } from '../../../../utils/generateRendomId';
 import styles from './addTasks.scss';
 
 export function AddTasks() {
@@ -11,7 +12,7 @@ export function AddTasks() {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const defaultTask = {
-		id: Date.now(),
+		id: generateId(),
 		title: value,
 		count: 1,
 		completed: false,
@@ -26,12 +27,10 @@ export function AddTasks() {
 		event.preventDefault();
 	}
 
-	// const removeTask = (id: number): void => {
-	// 	setTasks(tasks.filter(task => task.id !== id))
-	// }
-
 	function addNewTask() {
-		dispatch(addTask(defaultTask));
+		if (value !== '') {
+			dispatch(addTask(defaultTask));
+		}
 		setVelue('');
 	}
 

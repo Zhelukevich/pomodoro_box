@@ -3,7 +3,7 @@ import { RootState } from "../store";
 
 
 export type ITask = {
-	id: number;
+	id: string;
 	title: string;
 	count: number;
 	completed: boolean;
@@ -22,16 +22,60 @@ export const tasksSlice = createSlice({
 	name: 'tasks',
 	initialState: initialTasksState,
 	reducers: {
+
 		addTask: (state, action: PayloadAction<ITask>) => {
 			state.items.push(action.payload);
 		},
-		removeTask: (state, action: PayloadAction<ITask>) => {
 
+		removeTask: (state, action: PayloadAction<string>) => {
+			let id = action.payload;
+
+			state.items = state.items.filter((item) => {
+				return item.id !== id;
+			});
 		},
+
+		increaseTask: (state, action: PayloadAction<string>) => {
+			let id = action.payload;
+			let findTask = state.items.find(task => task.id === id);
+
+			if (findTask) {
+				findTask.count++;
+			}
+		},
+
+		decreaseTask: (state, action: PayloadAction<string>) => {
+			let id = action.payload;
+			let findTask = state.items.find(task => task.id === id);
+
+			if (findTask) {
+				findTask.count--;
+			}
+		},
+
+		editTask: (state, action: PayloadAction<string>) => {
+			let id = action.payload;
+			let findTask = state.items.find(task => task.id === id);
+
+			if (findTask) {
+				findTask.edit = true;
+			}
+		},
+
+		renameTask: (state, action: PayloadAction<{ id: string, title: string }>) => {
+			let { id, title } = action.payload;
+			let findTask = state.items.find(task => task.id === id);
+
+			if (findTask) {
+				findTask.edit = false;
+				findTask.title = title;
+			}
+		},
+
 	}
 })
 
-export const { addTask, removeTask } = tasksSlice.actions;
+export const { addTask, removeTask, increaseTask, decreaseTask, editTask, renameTask } = tasksSlice.actions;
 
 export const tasks = (state: RootState) => state.tasks
 

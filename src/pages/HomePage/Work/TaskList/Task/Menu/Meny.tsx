@@ -1,9 +1,16 @@
+import { table } from 'console';
 import React, { useState } from 'react';
 import { Dropdown } from '../../../../../../components/Dropdown';
+import { ITask } from '../../../../../../store/slice/tasksSlice';
 import { MenuDropdown } from './MenuDropdown';
 import styles from './meny.scss';
 
-export function Meny() {
+
+interface IMenyProps {
+	task: ITask
+}
+
+export function Meny({ task }: IMenyProps) {
 
 	return (
 		<Dropdown
@@ -17,7 +24,7 @@ export function Meny() {
 				</button>
 			}
 		>
-			<MenuDropdown />
+			<MenuDropdown task={task} />
 		</Dropdown>
 	)
 }
