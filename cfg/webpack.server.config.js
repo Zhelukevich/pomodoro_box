@@ -13,11 +13,11 @@ module.exports = {
 
 	output: {
 		path: path.resolve(__dirname, '../dist/server'),
-		filename: 'server.js'
+		filename: 'server.js',
 	},
 
 	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 	},
 
 	externals: [nodeExternals()],
@@ -25,9 +25,20 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.[tj]sx?$/,
-				use: ['ts-loader']
-			}, {
+				test: /\.(js|jsx|tsx|ts)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							'@babel/preset-env',
+							'@babel/preset-react',
+							'@babel/preset-typescript',
+						],
+					},
+				},
+			},
+			{
 				test: /\.s[ac]ss$/i,
 				use: [
 					{
@@ -38,31 +49,36 @@ module.exports = {
 								localIdentName: '[name]__[local]--[hash:base64:5]',
 							},
 							onlyLocals: true,
-						}
-					}, {
+						},
+					},
+					{
 						loader: 'resolve-url-loader',
-					}, {
+					},
+					{
 						loader: 'sass-loader',
 						options: {
 							sourceMap: true,
-						}
-					}
+						},
+					},
 				],
-				exclude: GLOBAL_CSS_REGEXP
-			}, {
+				exclude: GLOBAL_CSS_REGEXP,
+			},
+			{
 				test: GLOBAL_CSS_REGEXP,
-				use: ['css-loader']
-			}, {
+				use: ['css-loader'],
+			},
+			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
 				type: 'asset/resource',
-			}, {
+			},
+			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
 				type: 'asset/resource',
 			},
-		]
+		],
 	},
 
 	optimization: {
-		minimize: false
-	}
+		minimize: false,
+	},
 };

@@ -25,11 +25,11 @@ function getEntry() {
 	return [
 		path.resolve(__dirname, '../src/client/index.jsx'),
 		'webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr',
-	]
+	];
 }
 
 module.exports = {
-	target: "web",
+	target: 'web',
 
 	mode: NODE_ENV ? NODE_ENV : 'development',
 
@@ -37,7 +37,7 @@ module.exports = {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 		alias: {
 			'react-dom': IS_DEV ? '@hot-loader/react-dom' : 'react-dom',
-		}
+		},
 	},
 
 	entry: getEntry(),
@@ -51,48 +51,62 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.[tj]sx?$/,
-				use: ['ts-loader']
-			}, {
+				test: /\.(js|jsx|tsx|ts)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							'@babel/preset-env',
+							'@babel/preset-react',
+							'@babel/preset-typescript',
+						],
+					},
+				},
+			},
+			{
 				test: /\.s[ac]ss$/i,
 				use: [
-					'style-loader', {
+					'style-loader',
+					{
 						loader: 'css-loader',
 						options: {
 							modules: {
 								mode: 'local',
 								localIdentName: '[name]__[local]--[hash:base64:5]',
-							}
-						}
-					}, {
+							},
+						},
+					},
+					{
 						loader: 'resolve-url-loader',
-					}, {
+					},
+					{
 						loader: 'sass-loader',
 						options: {
 							sourceMap: true,
-						}
-					}
+						},
+					},
 				],
-				exclude: GLOBAL_CSS_REGEXP
-			}, {
+				exclude: GLOBAL_CSS_REGEXP,
+			},
+			{
 				test: GLOBAL_CSS_REGEXP,
-				use: ['style-loader', 'css-loader', 'sass-loader']
-			}, {
+				use: ['style-loader', 'css-loader', 'sass-loader'],
+			},
+			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
 				type: 'asset/resource',
-			}, {
+			},
+			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
 				type: 'asset/resource',
 			},
-		]
+		],
 	},
 
 	devtool: setupDevtool(),
 
 	plugins: IS_DEV
-		? [
-			new CleanWebpackPlugin(),
-			new HotModuleReplacementPlugin(),
-		] : [],
-
+		? [new CleanWebpackPlugin(), new HotModuleReplacementPlugin()]
+		: [],
 };
