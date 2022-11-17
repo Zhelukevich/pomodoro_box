@@ -18,7 +18,7 @@ export function TaskTimeCounter() {
 			newTimeCounter.pomodoro += task.count
 		));
 
-		let totalMin = newTimeCounter.pomodoro;
+		let totalMin = newTimeCounter.pomodoro * 0;
 		newTimeCounter.hour = Math.floor(totalMin / 60);
 		newTimeCounter.min = totalMin % 60;
 

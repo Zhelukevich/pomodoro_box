@@ -1,6 +1,7 @@
 .timer {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
-	min-height: 507px;
+	max-height: 507px;
 	grid-column: 6/13;
 }

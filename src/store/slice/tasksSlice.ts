@@ -6,7 +6,7 @@ export type ITask = {
 	id: string;
 	title: string;
 	count: number;
-	completed: boolean;
+	task_finished: number;
 	edit: boolean
 }
 
@@ -72,10 +72,19 @@ export const tasksSlice = createSlice({
 			}
 		},
 
+		finishTask: (state, action: PayloadAction<string>) => {
+			let id = action.payload;
+			let findTask = state.items.find(task => task.id === id);
+
+			if (findTask) {
+				findTask.task_finished++;
+			}
+		},
+
 	}
 })
 
-export const { addTask, removeTask, increaseTask, decreaseTask, editTask, renameTask } = tasksSlice.actions;
+export const { addTask, removeTask, increaseTask, decreaseTask, editTask, renameTask, finishTask } = tasksSlice.actions;
 
 export const tasks = (state: RootState) => state.tasks
 

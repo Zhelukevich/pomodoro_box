@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tasksReducer from './slice/tasksSlice';
+import statReducer from './slice/statSlice'
 
 
 export const store = configureStore({
 	reducer: {
 		tasks: tasksReducer,
+		stat: statReducer,
 	},
 	preloadedState: loadFromLocalStorage()
 })
