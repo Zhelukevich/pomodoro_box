@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import styles from './taskTimeCounter.scss';
 import { useAppSelector } from '../../../../hooks';
 import { ITask } from '../../../../store/slice/tasksSlice';
 
@@ -18,7 +19,7 @@ export function TaskTimeCounter() {
 			newTimeCounter.pomodoro += task.count
 		));
 
-		let totalMin = newTimeCounter.pomodoro * 0;
+		let totalMin = newTimeCounter.pomodoro;
 		newTimeCounter.hour = Math.floor(totalMin / 60);
 		newTimeCounter.min = totalMin % 60;
 
@@ -28,7 +29,7 @@ export function TaskTimeCounter() {
 
 
 	return (
-		<div>
+		<div className={styles.time}>
 			{timeCounter.hour > 0 && <span>{timeCounter.hour} час </span>}
 			{timeCounter.min > 0 && <span>{timeCounter.min} мин</span>}
 		</div>

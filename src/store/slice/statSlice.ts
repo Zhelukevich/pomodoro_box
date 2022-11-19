@@ -16,7 +16,7 @@ interface IStatState {
 }
 
 const currentDateStateItem: IStatItem = {
-	date: moment().format('YYY-MM-DD'),
+	date: moment().format('YYYY-MM-DD'),
 	count: 0,
 	stop_count: 0,
 	work_sec: 0,
@@ -31,12 +31,51 @@ export const statSlice = createSlice({
 	name: 'stat',
 	initialState: initialStatState,
 	reducers: {
+		setCurrentDateEmptyItem: (state) => {
+			let currentDate = moment().format('YYYY-MM-DD');
+			let findStatItem = state.items.find(statItem => statItem.date === currentDate);
 
+			if (!findStatItem) {
+				state.items.push(currentDateStateItem);
+			}
+		},
+		increaseStatPomodoroCounter: (state) => {
+			let currentDate = moment().format('YYYY-MM-DD');
+			let findStatItem = state.items.find(statItem => statItem.date === currentDate);
+
+			if (findStatItem) {
+				findStatItem.count++;
+			}
+		},
+		increaseStatStopCounter: (state) => {
+			let currentDate = moment().format('YYYY-MM-DD');
+			let findStatItem = state.items.find(statItem => statItem.date === currentDate);
+
+			if (findStatItem) {
+				findStatItem.count++;
+			}
+		},
+		increaseStatPauseSec: (state) => {
+			let currentDate = moment().format('YYYY-MM-DD');
+			let findStatItem = state.items.find(statItem => statItem.date === currentDate);
+
+			if (findStatItem) {
+				findStatItem.pause_sec++;
+			}
+		},
+		increaseStatWorkSec: (state) => {
+			let currentDate = moment().format('YYYY-MM-DD');
+			let findStatItem = state.items.find(statItem => statItem.date === currentDate);
+
+			if (findStatItem) {
+				findStatItem.work_sec++;
+			}
+		},
 	}
 })
 
-export const { } = statSlice.actions
+export const { increaseStatPomodoroCounter, increaseStatStopCounter, increaseStatPauseSec, increaseStatWorkSec, setCurrentDateEmptyItem } = statSlice.actions;
 
-export const stat = (state: RootState) => state.stat
+export const stat = (state: RootState) => state.stat;
 
-export default statSlice.reducer
+export default statSlice.reducer;

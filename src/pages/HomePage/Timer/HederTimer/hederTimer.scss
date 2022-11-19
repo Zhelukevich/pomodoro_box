@@ -9,11 +9,6 @@
 	padding: 0 40px;
 	background-color: $gray-light;
 
-	.task {
-		@include text;
-		font-weight: 700;
-		color: $white;
-	}
 
 	.number {
 		@include text;

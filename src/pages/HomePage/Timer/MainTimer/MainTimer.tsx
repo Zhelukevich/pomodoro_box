@@ -1,35 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './mainTimer.scss';
-import classNames from 'classnames'
+import { useAppSelector } from '../../../../hooks';
+import { ITask } from '../../../../store/slice/tasksSlice';
+import { Stopwatch } from './Stopwatch';
+import { TitleStopwatch } from './TitleStopwatch';
+import { StopwatchControl } from './StopwatchControl';
 
 
-export function MainTimer() {
+interface IMainTimer {
+	timerInSeconds: number;
+	task: ITask,
 
-	const btn = classNames(
-		[styles.btn,
-		styles.btn1]
-	);
+	isTimeToBreak: boolean;
+	setIsBreakStarted: React.Dispatch<React.SetStateAction<boolean>>;
+	setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
+	setTimerInSeconds: React.Dispatch<React.SetStateAction<number>>;
+	setIsBreakPaused: React.Dispatch<React.SetStateAction<boolean>>;
+	setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
+	handleCompleteBreak: any;
+	handleCompleteTask: any;
+	isPaused: boolean;
+	isStarted: boolean;
+	isBreakPaused: boolean;
+	isBreakStarted: boolean;
+}
+
+export function MainTimer(props: IMainTimer) {
+	const {
+		task,
+		timerInSeconds,
+		isTimeToBreak,
+		setIsBreakStarted,
+		setIsStarted,
+		setTimerInSeconds,
+		setIsBreakPaused,
+		setIsPaused,
+		handleCompleteBreak,
+		handleCompleteTask,
+		isPaused,
+		isStarted,
+		isBreakPaused,
+		isBreakStarted
+	} = props
 
 	return (
 		<div className={styles.mainTimer}>
-
-			<div className={styles.timer}>
-				25:00
-				<button className={styles.setting}>
-					<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50ZM26.2756 33V26.1321H33V23.7029H26.2756V17H23.7244V23.7029H17V26.1321H23.7244V33H26.2756Z" fill="#C4C4C4" />
-					</svg>
-				</button>
-			</div>
-
-			<div className={styles.task}>
-				<b>Задача 1 - <span>Сверстать сайт</span></b>
-			</div>
-
-			<div className={styles.containerBtn}>
-				<button className={btn}>Старт</button>
-				<button className={btn}>Стоп</button>
-			</div>
+			<Stopwatch timerInSeconds={timerInSeconds} />
+			<TitleStopwatch task={task} />
+			<StopwatchControl
+				isTimeToBreak={isTimeToBreak}
+				setIsBreakStarted={setIsBreakStarted}
+				setIsStarted={setIsStarted}
+				setTimerInSeconds={setTimerInSeconds}
+				setIsBreakPaused={setIsBreakPaused}
+				setIsPaused={setIsPaused}
+				handleCompleteBreak={handleCompleteBreak}
+				handleCompleteTask={handleCompleteTask}
+				isPaused={isPaused}
+				isStarted={isStarted}
+				isBreakPaused={isBreakPaused}
+				isBreakStarted={isBreakStarted}
+			/>
 		</div>
 	)
 }

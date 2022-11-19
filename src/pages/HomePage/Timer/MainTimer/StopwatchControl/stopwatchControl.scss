@@ -1,0 +1,20 @@
+@import '../../../../../styles/global.main.scss';
+
+.containerBtn {
+	margin-top: auto;
+
+	.btn {
+		padding: 19px 50px;
+		font-weight: 500;
+		@include text;
+		outline: 1px solid red;
+	}
+
+	.btn:not(:last-child) {
+		margin-right: 25px;
+	}
+
+	.btn1 {
+		color: red;
+	}
+}

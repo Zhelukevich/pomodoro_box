@@ -1,0 +1,16 @@
+@import '../../../../../styles/global.main.scss';
+
+.timer {
+	position: relative;
+	font-weight: 100;
+	font-size: 150px;
+	line-height: 179px;
+	color: $text-color;
+
+	.setting {
+		position: absolute;
+		right: -75px;
+		top: 0;
+		bottom: 0;
+	}
+}

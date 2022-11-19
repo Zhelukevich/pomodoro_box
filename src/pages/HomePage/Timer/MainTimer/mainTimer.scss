@@ -9,38 +9,4 @@
 	height: 100%;
 	padding: 70px 0 107px 0;
 	background-color: $gray-light-f1;
-
-	.timer {
-		position: relative;
-		font-weight: 100;
-		font-size: 150px;
-		line-height: 179px;
-		color: $text-color;
-
-		.setting {
-			position: absolute;
-			right: -75px;
-			top: 0;
-			bottom: 0;
-		}
-	}
-
-	.containerBtn {
-		margin-top: auto;
-
-		.btn {
-			padding: 19px 50px;
-			font-weight: 500;
-			@include text;
-			outline: 1px solid red;
-		}
-
-		.btn:not(:last-child) {
-			margin-right: 25px;
-		}
-
-		.btn1 {
-			color: red;
-		}
-	}
 }

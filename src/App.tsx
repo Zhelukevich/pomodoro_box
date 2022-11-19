@@ -10,12 +10,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { useAppDispatch } from './hooks';
+import { setCurrentDateEmptyItem } from './store/slice/statSlice';
 
 function AppWrap() {
 	const [mounted, setMounted] = useState(false);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		setMounted(true);
+
+		dispatch(setCurrentDateEmptyItem());
+
 	}, []);
 
 	return (

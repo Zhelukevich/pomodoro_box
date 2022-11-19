@@ -1,11 +1,24 @@
 import React from 'react';
-import styles from './hederTimer.scss'
+import { ITask } from '../../../../store/slice/tasksSlice';
+import styles from './hederTimer.scss';
 
-export function HederTimer() {
+
+interface IHederTimer {
+	task: ITask,
+	isTimeToBreak: boolean;
+	currentBreak: number;
+	currentPomodoro: number;
+}
+
+export function HederTimer({ isTimeToBreak, currentBreak, currentPomodoro, task }: IHederTimer) {
+
 	return (
 		<div className={styles.hederTimer}>
-			<span className={styles.task}>Сверстать сайт</span>
-			<span className={styles.number}>Помидор 1</span>
+			<span className={styles.task}>{task.title}</span>
+			{isTimeToBreak ?
+				<span className={styles.number}>Перерыв {currentBreak}</span> :
+				<span className={styles.number}>Помидор {currentPomodoro}</span>
+			}
 		</div>
 	)
 }
