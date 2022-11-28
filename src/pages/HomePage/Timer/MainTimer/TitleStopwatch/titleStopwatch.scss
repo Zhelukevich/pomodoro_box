@@ -3,5 +3,9 @@
 .titleStopwatch {
 	@include text;
 	font-weight: 400;
-	color: $red;
+	color: $text-color;
+
+	.taskNumber {
+		color: $gray;
+	}
 }

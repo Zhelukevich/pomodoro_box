@@ -7,14 +7,44 @@
 		padding: 19px 50px;
 		font-weight: 500;
 		@include text;
-		outline: 1px solid red;
+
 	}
 
 	.btn:not(:last-child) {
 		margin-right: 25px;
 	}
 
-	.btn1 {
-		color: red;
+	.red {
+		color: $red;
+		border: 2px solid $red;
+		background-color: inherit;
+
+		&:hover:enabled {
+			background-color: $red;
+			color: $white;
+		}
 	}
+
+
+
+	.green {
+		border: 2px solid $light-green;
+		background-color: $light-green;
+		color: $white;
+		transition: background-color .2s linear,
+			border .2s linear;
+
+		&:hover {
+			background-color: $dark-green;
+			border: 2px solid $dark-green;
+		}
+	}
+
+}
+
+.btn:disabled {
+	border: 2px solid $gray-light;
+	color: $gray-light;
+	background-color: inherit;
+	cursor: auto;
 }

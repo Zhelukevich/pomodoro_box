@@ -1,1 +1,1 @@
-export * from './Meny'
+export * from './Menu'

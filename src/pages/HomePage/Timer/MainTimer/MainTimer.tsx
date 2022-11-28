@@ -17,12 +17,14 @@ interface IMainTimer {
 	setTimerInSeconds: React.Dispatch<React.SetStateAction<number>>;
 	setIsBreakPaused: React.Dispatch<React.SetStateAction<boolean>>;
 	setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
-	handleCompleteBreak: any;
-	handleCompleteTask: any;
+	handleCompleteBreak: () => void;
+	handleCompleteTask: () => void;
 	isPaused: boolean;
 	isStarted: boolean;
 	isBreakPaused: boolean;
 	isBreakStarted: boolean;
+
+	setConfig: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function MainTimer(props: IMainTimer) {
@@ -40,13 +42,21 @@ export function MainTimer(props: IMainTimer) {
 		isPaused,
 		isStarted,
 		isBreakPaused,
-		isBreakStarted
+		isBreakStarted,
+		setConfig
 	} = props
 
 	return (
 		<div className={styles.mainTimer}>
-			<Stopwatch timerInSeconds={timerInSeconds} />
-			<TitleStopwatch task={task} />
+			<Stopwatch
+				timerInSeconds={timerInSeconds}
+				setConfig={setConfig}
+				isStarted={isStarted}
+				isPaused={isPaused}
+			/>
+			<TitleStopwatch
+				task={task}
+			/>
 			<StopwatchControl
 				isTimeToBreak={isTimeToBreak}
 				setIsBreakStarted={setIsBreakStarted}

@@ -10,7 +10,7 @@ interface ITitleStopwatch {
 export function TitleStopwatch({ task }: ITitleStopwatch) {
 	return (
 		<div className={styles.titleStopwatch}>
-			<span>Задача 1 - <span>{task.title}</span></span>
+			<span><span className={styles.taskNumber}>Задача 1 - </span>{task.title}</span>
 		</div>
 	)
 }

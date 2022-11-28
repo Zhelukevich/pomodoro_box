@@ -1,0 +1,39 @@
+@import '../../../../styles/global.main.scss';
+
+.config {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 100%;
+	height: 100%;
+	padding: 100px 100px;
+	background-color: $gray-light-f1;
+
+	.label {
+		display: flex;
+		flex-direction: column;
+		font-weight: 700;
+
+		.input {
+			width: 100%;
+			height: 55px;
+			padding: 0 15px;
+			margin-top: 10px;
+			margin-bottom: 25px;
+			border: none;
+			background-color: $white;
+			font-weight: 400;
+			@include text;
+			color: $text-color;
+			transition: outline 0.2s linear;
+		}
+
+		.input:hover {
+			outline: 1px solid $gray;
+		}
+
+		.input:focus {
+			outline: 1px solid $gray;
+		}
+	}
+}

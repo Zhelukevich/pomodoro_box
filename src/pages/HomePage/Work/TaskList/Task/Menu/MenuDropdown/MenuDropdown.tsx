@@ -1,15 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ModalWindow } from '../../../../../../../components/ModalWindow';
 import { useAppDispatch } from '../../../../../../../hooks';
 import { decreaseTask, editTask, increaseTask, ITask, removeTask } from '../../../../../../../store/slice/tasksSlice';
 import styles from './menudropdown.scss';
 
 interface IMenuDropdownProps {
-	// isOpen: boolean,
+	onClose?: () => void;
 	task: ITask,
 }
 
-export function MenuDropdown({ task }: IMenuDropdownProps) {
+const NOOP = () => { };
+
+export function MenuDropdown({ task, onClose = NOOP }: IMenuDropdownProps) {
 	const [isModelOpened, setIsModalOpened] = useState(false);
 	const dispatch = useAppDispatch();
 

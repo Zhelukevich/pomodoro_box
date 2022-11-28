@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { Dropdown } from '../../../../../../components/Dropdown';
 import { ITask } from '../../../../../../store/slice/tasksSlice';
 import { MenuDropdown } from './MenuDropdown';
-import styles from './meny.scss';
+import styles from './menu.scss';
 
 
-interface IMenyProps {
+interface IMenuProps {
 	task: ITask
 }
 
-export function Meny({ task }: IMenyProps) {
+export function Menu({ task }: IMenuProps) {
 
 	return (
 		<Dropdown
@@ -24,7 +24,9 @@ export function Meny({ task }: IMenyProps) {
 				</button>
 			}
 		>
-			<MenuDropdown task={task} />
+			<MenuDropdown
+				task={task}
+			/>
 		</Dropdown>
 	)
 }

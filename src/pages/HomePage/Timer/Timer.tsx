@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { increaseBreaksCounter } from '../../../store/slice/breaksSlice';
 import { increaseStatPauseSec, increaseStatPomodoroCounter, increaseStatWorkSec } from '../../../store/slice/statSlice';
 import { finishTask, removeTask } from '../../../store/slice/tasksSlice';
+import { ConfigTimer } from './ConfigTimer';
 import { HederTimer } from './HederTimer';
 import { MainTimer } from './MainTimer';
 import styles from './timer.scss';
@@ -16,7 +17,7 @@ export function Timer() {
 	const largeBreak = useAppSelector(state => state.config.largeBreakTime);
 
 	const [task, setTask] = useState(tasksList[0]);
-	const [currentPomodoro, setCurrentPomodoro] = useState(task.task_finished + 1);
+	const [currentPomodoro, setCurrentPomodoro] = useState(task.count);
 	const [currentBreak, setCurrentBreak] = useState(breaksCounter + 1);
 	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMin * 60);
 	const [breakInMin, setBreakInMin] = useState(breaksCounter % 4 ? largeBreak : smallBreak);
@@ -26,6 +27,8 @@ export function Timer() {
 	const [isTimeToBreak, setIsTimeToBreak] = useState(false);
 	const [isBreakStarted, setIsBreakStarted] = useState(false);
 	const [isBreakPaused, setIsBreakPaused] = useState(false);
+
+	const [config, setConfig] = useState(false);
 
 	const dispatch = useAppDispatch();
 
@@ -64,67 +67,72 @@ export function Timer() {
 			}
 		}, 1000);
 
-		function handleCompleteTask() {
-
-			//Сбрасываем таймер
-			setIsPaused(false);
-			setIsStarted(false);
-			setTimerInSeconds(breakInMin * 60);
-			setIsTimeToBreak(true);
-
-			//Если задача из нескольких помидорок
-			if (currentPomodoro === task.count) {
-				dispatch(removeTask(task.id));
-			} else {
-				setCurrentPomodoro(currentPomodoro + 1);
-			}
-
-			dispatch(finishTask(task.id));
-			dispatch(increaseStatPomodoroCounter());
-		}
-
-		function handleCompleteBreak() {
-
-			//Сбрасываем таймер
-			setIsBreakPaused(false);
-			setIsBreakStarted(false);
-			setIsTimeToBreak(false);
-			setTimerInSeconds(pomodoroInMin * 60);
-			dispatch(increaseBreaksCounter());
-		}
-
-
 		return () => {
 			clearInterval(timerId);
 		};
 	}, [isStarted, isPaused, isBreakStarted, isBreakPaused, timerInSeconds]);
 
 
-	return (
-		<div className={styles.timer}>
-			<HederTimer
-				task={task}
-				isTimeToBreak={isTimeToBreak}
-				currentBreak={currentBreak}
-				currentPomodoro={currentPomodoro}
-			/>
-			<MainTimer
-				timerInSeconds={timerInSeconds}
-				task={task}
+	function handleCompleteTask() {
+		//Сбрасываем таймер
+		setIsPaused(false);
+		setIsStarted(false);
+		setTimerInSeconds(breakInMin * 60);
+		setIsTimeToBreak(true);
+		//Если задача из нескольких помидорок
+		if (currentPomodoro === task.count) {
+			dispatch(removeTask(task.id));
+		} else {
+			setCurrentPomodoro(currentPomodoro + 1);
+		}
 
-				isTimeToBreak={isTimeToBreak}
-				setIsBreakStarted={setIsBreakStarted}
-				setIsStarted={setIsStarted}
-				setTimerInSeconds={setTimerInSeconds}
-				setIsBreakPaused={setIsBreakPaused}
-				setIsPaused={setIsPaused}
-				handleCompleteBreak={handleCompleteBreak()}
-				handleCompleteTask={handleCompleteTask()}
-				isPaused={isPaused}
-				isStarted={isStarted}
-				isBreakPaused={isBreakPaused}
-				isBreakStarted={isBreakStarted}
-			/>
+		dispatch(finishTask(task.id));
+		dispatch(increaseStatPomodoroCounter());
+	}
+
+	function handleCompleteBreak() {
+		//Сбрасываем таймер
+		setIsBreakPaused(false);
+		setIsBreakStarted(false);
+		setIsTimeToBreak(false);
+		setTimerInSeconds(pomodoroInMin * 60);
+		dispatch(increaseBreaksCounter());
+	}
+
+	return (
+		<div className={styles.timers}>
+			{config ?
+				<ConfigTimer onClose={() => { setConfig(false) }} /> :
+				<>
+					<HederTimer
+						task={task}
+						isTimeToBreak={isTimeToBreak}
+						currentBreak={currentBreak}
+						currentPomodoro={currentPomodoro}
+						isStarted={isStarted}
+						isPaused={isPaused} />
+
+					<MainTimer
+						timerInSeconds={timerInSeconds}
+						task={task}
+
+						isTimeToBreak={isTimeToBreak}
+						setIsBreakStarted={setIsBreakStarted}
+						setIsStarted={setIsStarted}
+						setTimerInSeconds={setTimerInSeconds}
+						setIsBreakPaused={setIsBreakPaused}
+						setIsPaused={setIsPaused}
+						handleCompleteBreak={handleCompleteBreak}
+						handleCompleteTask={handleCompleteTask}
+						isPaused={isPaused}
+						isStarted={isStarted}
+						isBreakPaused={isBreakPaused}
+						isBreakStarted={isBreakStarted}
+						setConfig={setConfig} />
+				</>
+			}
+
+
 		</div>
 	)
 }

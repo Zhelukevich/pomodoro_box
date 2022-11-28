@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks';
 import { increaseStatStopCounter } from '../../../../../store/slice/statSlice';
@@ -17,8 +18,8 @@ interface IStopwatchControlProps {
 	setTimerInSeconds: React.Dispatch<React.SetStateAction<number>>;
 	setIsBreakPaused: React.Dispatch<React.SetStateAction<boolean>>;
 	setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
-	handleCompleteBreak: any;
-	handleCompleteTask: any;
+	handleCompleteBreak: () => void;
+	handleCompleteTask: () => void;
 	isPaused: boolean;
 	isStarted: boolean;
 	isBreakPaused: boolean;
@@ -113,23 +114,32 @@ export function StopwatchControl(props: IStopwatchControlProps) {
 		}
 	}
 
+	const btnR = classNames(
+		styles.btn,
+		styles.red
+	);
+
+	const btnL = classNames(
+		styles.btn,
+		styles.green
+	);
 
 	return (
 		<div className={styles.containerBtn}>
 			<button
-				className={styles.btn}
+				className={btnL}
 				onClick={firstButton.onClick}
 				disabled={firstButton.disabled}
 			>
 				{firstButton.name}
 			</button>
 			<button
-				className={styles.btn}
+				className={btnR}
 				onClick={secondButton.onClick}
 				disabled={secondButton.disabled}
 			>
 				{secondButton.name}
 			</button>
-		</div>
+		</div >
 	)
 }

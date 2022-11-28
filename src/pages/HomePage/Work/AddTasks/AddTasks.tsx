@@ -16,7 +16,8 @@ export function AddTasks() {
 		title: value,
 		count: 1,
 		completed: false,
-		edit: false
+		edit: false,
+		task_finished: 0
 	};
 
 	const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {

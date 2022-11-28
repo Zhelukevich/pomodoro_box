@@ -7,12 +7,30 @@
 	width: 100%;
 	height: 55px;
 	padding: 0 40px;
-	background-color: $gray-light;
 
+
+	.title {
+		@include text;
+		font-weight: 700;
+		color: $white;
+		;
+	}
 
 	.number {
 		@include text;
 		font-weight: 400;
 		color: $white;
 	}
+}
+
+.hederGray {
+	background-color: $gray-light;
+}
+
+.hederGreen {
+	background-color: $light-green;
+}
+
+.hederRed {
+	background-color: $red;
 }

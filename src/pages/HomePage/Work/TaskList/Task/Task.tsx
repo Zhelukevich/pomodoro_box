@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../../../../hooks';
 import { ITask, renameTask } from '../../../../../store/slice/tasksSlice';
-import { Meny } from './Menu';
+import { Menu } from './Menu';
 import styles from './task.scss';
 
 interface ITaskProps {
@@ -42,7 +42,7 @@ export function Task({ task }: ITaskProps) {
 					</div>
 
 				</div>
-				<Meny task={task} />
+				<Menu task={task} />
 			</li>
 		</>
 	)
