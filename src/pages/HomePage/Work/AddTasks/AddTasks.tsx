@@ -1,11 +1,14 @@
 import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
-import { useAppDispatch } from '../../../../hooks';
-import { addTask } from '../../../../store/slice/tasksSlice';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
+import { addTask, ITask } from '../../../../store/slice/tasksSlice';
 import { generateId } from '../../../../utils/generateRendomId';
 import styles from './addTasks.scss';
 
+
+
 export function AddTasks() {
-	const [value, setVelue] = useState('');
+	const [value, setValue] = useState('');
+	const tasksList = useAppSelector(state => state.tasks.items);
 
 	const dispatch = useAppDispatch();
 
@@ -17,11 +20,17 @@ export function AddTasks() {
 		count: 1,
 		completed: false,
 		edit: false,
-		task_finished: 0
+		task_finished: 0,
+		selected: false,
+		// sequence: index()
 	};
 
+	// function index() {
+	// 	return tasksList.indexOf(task) + 1
+	// }
+
 	const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-		setVelue(event.target.value);
+		setValue(event.target.value);
 	}
 
 	const handleSumbit = (event: FormEvent) => {
@@ -32,7 +41,7 @@ export function AddTasks() {
 		if (value !== '') {
 			dispatch(addTask(defaultTask));
 		}
-		setVelue('');
+		setValue('');
 	}
 
 	useEffect(() => {

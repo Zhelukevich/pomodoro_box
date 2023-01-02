@@ -10,14 +10,14 @@ import styles from './timer.scss';
 
 
 export function Timer() {
-	const tasksList = useAppSelector(state => state.tasks.items);
+	const tasksList = useAppSelector(state => state.tasks.choices);
 	const pomodoroInMin = useAppSelector(state => state.config.pomodoroInMin);
 	const breaksCounter = useAppSelector(state => state.breaks.breakCounter);
 	const smallBreak = useAppSelector(state => state.config.smallBreakTime);
 	const largeBreak = useAppSelector(state => state.config.largeBreakTime);
 
 	const [task, setTask] = useState(tasksList[0]);
-	const [currentPomodoro, setCurrentPomodoro] = useState(task.count);
+	const [currentPomodoro, setCurrentPomodoro] = useState(task.task_finished + 1);
 	const [currentBreak, setCurrentBreak] = useState(breaksCounter + 1);
 	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMin * 60);
 	const [breakInMin, setBreakInMin] = useState(breaksCounter % 4 ? largeBreak : smallBreak);

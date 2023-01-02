@@ -25,6 +25,7 @@ export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
 		return parseInt(event.target.value) || 1;
 	}
 
+
 	function handlePomodoroChange(event: React.ChangeEvent<HTMLInputElement>) {
 		let newValue = handleChange(event);
 		setPomodoroInMinValue(newValue);
@@ -33,14 +34,14 @@ export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
 
 	function handleSmallBreakTimeValueChange(event: React.ChangeEvent<HTMLInputElement>) {
 		let newValue = handleChange(event);
-		setStateSmallBreakTime(newValue);
-		setSmallBreakTimeValue(handleChange(event));
+		setSmallBreakTimeValue(newValue);
+		dispatch(setStateSmallBreakTime(newValue));
 	}
 
 	function handleLargeBreakTimeValueChange(event: React.ChangeEvent<HTMLInputElement>) {
 		let newValue = handleChange(event);
-		setStateLargeBreakTime(newValue);
-		setLargeBreakTimeValue(handleChange(event));
+		setLargeBreakTimeValue(newValue);
+		dispatch(setStateLargeBreakTime(newValue));
 	}
 
 	useEffect(() => {

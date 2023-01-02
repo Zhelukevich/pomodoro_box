@@ -6,7 +6,6 @@ interface ITitleStopwatch {
 	task: ITask;
 }
 
-
 export function TitleStopwatch({ task }: ITitleStopwatch) {
 	return (
 		<div className={styles.titleStopwatch}>

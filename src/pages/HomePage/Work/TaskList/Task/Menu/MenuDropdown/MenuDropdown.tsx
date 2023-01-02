@@ -15,6 +15,9 @@ export function MenuDropdown({ task, onClose = NOOP }: IMenuDropdownProps) {
 	const [isModelOpened, setIsModalOpened] = useState(false);
 	const dispatch = useAppDispatch();
 
+
+
+
 	function handleDeleteTask() {
 		dispatch(removeTask(task.id));
 	}
@@ -30,6 +33,8 @@ export function MenuDropdown({ task, onClose = NOOP }: IMenuDropdownProps) {
 	function handleEditTask() {
 		dispatch(editTask(task.id));
 	}
+
+
 
 	return (
 		<div className={styles.dropdown} >

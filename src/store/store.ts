@@ -17,8 +17,10 @@ export const store = configureStore({
 
 function saveToLocalStorage(state: RootState) {
 	try {
-		const serialisedState = JSON.stringify(state);
-		localStorage.setItem("persistentState", serialisedState);
+		const serializedState = JSON.stringify(state);
+		if (typeof window !== 'undefined') {
+			localStorage.setItem("persistentState", serializedState);
+		}
 	} catch (e) {
 		console.warn(e);
 	}
@@ -26,9 +28,11 @@ function saveToLocalStorage(state: RootState) {
 
 function loadFromLocalStorage() {
 	try {
-		const serialisedState = localStorage.getItem("persistentState");
-		if (serialisedState === null) return undefined;
-		return JSON.parse(serialisedState);
+		if (typeof window !== 'undefined') {
+			const serializedState = localStorage.getItem("persistentState");
+			if (serializedState === null) return undefined;
+			return JSON.parse(serializedState);
+		}
 	} catch (e) {
 		console.warn(e);
 		return undefined;

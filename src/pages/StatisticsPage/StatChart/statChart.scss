@@ -1,0 +1,9 @@
+@import '../../../styles/global.main.scss';
+
+.chart {
+	grid-column: 4 / 13;
+	grid-row: 1 / 3;
+	width: 100%;
+	height: 471px;
+	background: $gray-light-f1;
+}

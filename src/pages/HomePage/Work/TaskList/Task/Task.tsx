@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../../../../hooks';
-import { ITask, renameTask } from '../../../../../store/slice/tasksSlice';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks';
+import { choiceNews, ITask, renameTask } from '../../../../../store/slice/tasksSlice';
 import { Menu } from './Menu';
 import styles from './task.scss';
 
 interface ITaskProps {
 	task: ITask,
+	// choice: ITask
 }
+
+
+
 
 export function Task({ task }: ITaskProps) {
 	const [taskTitle, setTaskTitle] = useState(task.title);
 
 	const dispatch = useAppDispatch();
-
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 		setTaskTitle(event.target.value);
 	}
@@ -23,9 +26,16 @@ export function Task({ task }: ITaskProps) {
 		}
 	}
 
+
+	const handleChoice = () => {
+		dispatch(choiceNews({ choices: !task.selected, id: task.id }))
+	};
+
 	return (
 		<>
-			<li className={styles.task}>
+			<li className={styles.task}
+				onClick={handleChoice}
+			>
 				<div className={styles.block}>
 					<span className={styles.count}>{task.count}</span>
 					<div>
@@ -40,7 +50,6 @@ export function Task({ task }: ITaskProps) {
 							: <h2 className={styles.title}>{task.title}</h2>
 						}
 					</div>
-
 				</div>
 				<Menu task={task} />
 			</li>
