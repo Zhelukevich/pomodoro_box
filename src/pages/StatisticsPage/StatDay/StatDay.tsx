@@ -17,11 +17,14 @@ export function StatDay({ selectedDayName, workInSec }: StatPomodoroProps) {
 
 	return (
 		<div className={styles.totalTime}>
-			<div className={'font-bold text-2xl leading-8 mb-2 capitalize'}>{selectedDayName}</div>
-			<div>
-				Вы работали над задачами в течение <span
-					className={'font-bold text-red-500 whitespace-nowrap'}>{timeString}</span>
-			</div>
+			<h3 className={styles.title}>{selectedDayName.charAt(0).toUpperCase() + selectedDayName.slice(1)}</h3>
+			<p className={styles.inform}>
+				Вы работали над задачами в&nbsp;течение
+
+				<span
+					className={styles.time}> {timeString}
+				</span>
+			</p>
 		</div>
 	);
 }

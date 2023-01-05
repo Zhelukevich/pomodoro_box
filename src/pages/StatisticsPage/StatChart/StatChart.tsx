@@ -5,6 +5,7 @@ import styles from './statChart.scss'
 
 import { useAppSelector } from "../../../hooks";
 import { ChartMode } from '../StatisticsPage';
+import classNames from 'classnames';
 
 type StatChartProps = {
 	selectedDate: string,
@@ -83,50 +84,54 @@ export function StatChart({ selectedDate, changeSelectedDate, selectedChartMode 
 
 	return (
 		<div className={styles.chart}>
-			<div className={'pt-20 mr-24 md:mr-28 xl:mr-32'}>
-				<div className={'relative mb-20 bg-gray-400 h-px'}>
-					<div
-						className={'absolute left-full whitespace-nowrap transform -translate-y-2/4 pl-8 text-xs text-gray-500 dark:text-gray-100'}>
+			<div className={styles.grid}>
+				<div className={styles.line}>
+					<span
+						className={styles.time}>
 						{secToTime(maxWorkSec)}
-					</div>
+					</span>
 				</div>
-				<div className={'relative mb-20 bg-gray-400 h-px'}>
-					<div
-						className={'absolute left-full whitespace-nowrap transform -translate-y-2/4 pl-8 text-xs text-gray-500 dark:text-gray-100'}>
+				<div className={styles.line}>
+					<span
+						className={styles.time}>
 						{secToTime(maxWorkSec / 4 * 3)}
-					</div>
+					</span>
 				</div>
-				<div className={'relative mb-20 bg-gray-400 h-px'}>
-					<div
-						className={'absolute left-full whitespace-nowrap transform -translate-y-2/4 pl-8 text-xs text-gray-500 dark:text-gray-100'}>
+				<div className={styles.line}>
+					<span
+						className={styles.time}>
 						{secToTime(maxWorkSec / 4 * 2)}
-					</div>
-				</div>
-				<div className={'relative mb-20 bg-gray-400 h-px'}>
-					<div
-						className={'absolute left-full whitespace-nowrap transform -translate-y-2/4 pl-8 text-xs text-gray-500 dark:text-gray-100'}>
+					</span>
+				</div >
+				<div className={styles.line}>
+					<span
+						className={styles.time}>
 						{secToTime(maxWorkSec / 4)}
-					</div>
-				</div>
-			</div>
-			<div className={'flex bg-gray-200 xl:text-2xl leading-8 text-gray-300  dark:bg-opacity-10  py-2 px-4 xl:px-16'}>
+					</span>
+				</div >
+			</div >
+			<div className={styles.weekday}>
 				{weekdays.map(item => {
-					let className = 'absolute w-full bottom-full mb-2 left-0';
 
-					if (item.active) {
-						className += calcHeight(item.workSec, maxWorkSec) > 5 ? ' bg-red-500' : ' bg-gray-400';
-					} else {
-						className += calcHeight(item.workSec, maxWorkSec) > 5 ? ' bg-red-300' : ' bg-gray-400';
-					}
+					let className = classNames(
+						styles.class,
+						item.active ? (calcHeight(item.workSec, maxWorkSec) > 5 && styles.red) : (calcHeight(item.workSec, maxWorkSec) > 5 && styles.redLight)
+					);
+
+					let text = classNames(
+						styles.text,
+						item.active ? (styles.text && styles.redText) : styles.text
+					);
 
 					return (
-						<div key={item.date} onClick={() => { changeSelectedDate(item.date) }} className={'relative mx-2 md:px-4 xl:px-6 xl:mx-4 cursor-pointer'}>
-							<span className={item.active ? 'capitalize text-red-500' : 'capitalize'}>{item.name}</span>
+						<div key={item.date} onClick={() => { changeSelectedDate(item.date) }} className={styles.weekdayTransfer}>
+							<span className={text}>{item.name}</span>
 							<div className={className} style={{ height: calcHeight(item.workSec, maxWorkSec) + 'px' }} />
 						</div>
 					)
 				})}
+
 			</div>
-		</div>
+		</div >
 	);
 }

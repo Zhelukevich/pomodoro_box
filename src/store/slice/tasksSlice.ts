@@ -14,12 +14,12 @@ export type ITask = {
 
 interface ITasksState {
 	items: ITask[];
-	choices: ITask[]
+	// choices: ITask[]
 }
 
 const initialTasksState: ITasksState = {
 	items: [],
-	choices: []
+	// choices: []
 }
 
 export const tasksSlice = createSlice({
@@ -85,18 +85,18 @@ export const tasksSlice = createSlice({
 			}
 		},
 
-		choiceNews: (state, action: PayloadAction<{ choices: boolean; id: string }>) => {
-			const toggleNews = state.items.find(items => items.id === action.payload.id);
-			if (toggleNews !== undefined) {
-				toggleNews.selected = !toggleNews?.selected
-				state.choices = [...state.items].filter(items => items.selected === true)
-			}
-		},
+		// choiceNews: (state, action: PayloadAction<{ choices: boolean; id: string }>) => {
+		// 	const toggleNews = state.items.find(items => items.id === action.payload.id);
+		// 	if (toggleNews !== undefined) {
+		// 		toggleNews.selected = !toggleNews?.selected
+		// 		state.choices = [...state.items].filter(items => items.selected === true)
+		// 	}
+		// },
 
 	}
 })
 
-export const { addTask, removeTask, increaseTask, decreaseTask, editTask, renameTask, finishTask, choiceNews } = tasksSlice.actions;
+export const { addTask, removeTask, increaseTask, decreaseTask, editTask, renameTask, finishTask } = tasksSlice.actions;
 
 export const tasks = (state: RootState) => state.tasks;
 

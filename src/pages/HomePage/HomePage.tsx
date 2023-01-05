@@ -6,10 +6,7 @@ import { Work } from './Work';
 
 
 export function HomePage() {
-	const tasksList = useAppSelector(state => state.tasks.choices);
-	// const choicesList = useAppSelector(state => state.tasks.choices);
-	// const [arr, setArr] = useState(choicesList);
-
+	const tasksList = useAppSelector(state => state.tasks.items);
 
 	return (
 		<div className={styles.container}>

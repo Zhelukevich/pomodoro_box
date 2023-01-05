@@ -13,7 +13,8 @@ type StatPomodoroProps = {
 export function StatPomodoro({ pomodoroCnt }: StatPomodoroProps) {
 	return (
 		<div className={styles.pomodoro}>
-			<div className={'p-6 flex items-center gap-2 justify-center my-auto'}>
+
+			<div className={styles.img}>
 				<svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clipPath="url(#clip0_16:413)">
 						<path
@@ -32,12 +33,15 @@ export function StatPomodoro({ pomodoroCnt }: StatPomodoroProps) {
 						</clipPath>
 					</defs>
 				</svg>
-				<div className={'font-bold text-2xl text-gray-300'}>
-					х {pomodoroCnt}
-				</div>
+
+				<span>x {pomodoroCnt}</span>
+
 			</div>
-			<div className={'px-6 py-2 bg-red-500 text-white text-center font-bold text-2xl leading-8'}>
-				{pomodoroCnt} {declinationOfNumber(pomodoroCnt, ['помидор', 'помидора', 'помидоров'])}
+
+			<div className={styles.count}>
+				<span>
+					{pomodoroCnt} {declinationOfNumber(pomodoroCnt, ['помидор', 'помидора', 'помидоров'])}
+				</span>
 			</div>
 		</div>
 	);

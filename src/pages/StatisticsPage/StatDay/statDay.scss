@@ -7,4 +7,23 @@
 	height: 260px;
 	padding: 25px;
 	background: $gray-light-f1;
+
+	.title {
+		@include text-bold;
+		margin: 0;
+		margin-bottom: 14px;
+	}
+
+	.inform {
+		margin: 0;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 28px;
+		color: $text-color;
+
+		.time {
+			font-weight: 700;
+			color: $red;
+		}
+	}
 }

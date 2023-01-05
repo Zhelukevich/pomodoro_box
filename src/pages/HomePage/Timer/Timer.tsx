@@ -10,7 +10,7 @@ import styles from './timer.scss';
 
 
 export function Timer() {
-	const tasksList = useAppSelector(state => state.tasks.choices);
+	const tasksList = useAppSelector(state => state.tasks.items);
 	const pomodoroInMin = useAppSelector(state => state.config.pomodoroInMin);
 	const breaksCounter = useAppSelector(state => state.breaks.breakCounter);
 	const smallBreak = useAppSelector(state => state.config.smallBreakTime);
