@@ -9,7 +9,7 @@
 	width: 100%;
 	height: 179px;
 	padding: 25px;
-	background: $blue;
+	background: $gray-light-f1;
 
 	.descr {
 		display: flex;
@@ -28,4 +28,12 @@
 			color: #333333;
 		}
 	}
+}
+
+.blue {
+	background-color: $blue;
+}
+
+.svg path {
+	stroke: #7FC2D7;
 }

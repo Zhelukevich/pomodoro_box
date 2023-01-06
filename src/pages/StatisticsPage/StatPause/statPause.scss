@@ -9,7 +9,8 @@
 	width: 100%;
 	height: 179px;
 	padding: 25px;
-	background: $purple;
+	background-color: $gray-light-f1;
+
 
 	.descr {
 		display: flex;
@@ -28,4 +29,12 @@
 			color: #333333;
 		}
 	}
+}
+
+.purple {
+	background-color: $purple;
+}
+
+.svg path {
+	stroke: #9C97D7;
 }
