@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks';
-import { choiceNews, ITask, renameTask } from '../../../../../store/slice/tasksSlice';
+import { ITask, renameTask } from '../../../../../store/slice/tasksSlice';
 import { Menu } from './Menu';
 import styles from './task.scss';
 
@@ -28,7 +28,8 @@ export function Task({ task }: ITaskProps) {
 
 
 	const handleChoice = () => {
-		dispatch(choiceNews({ choices: !task.selected, id: task.id }))
+		console.log(task.title);
+
 	};
 
 	return (

@@ -63,6 +63,16 @@ export const statSlice = createSlice({
 				findStatItem.pause_sec++;
 			}
 		},
+
+		increaseStatStopCount: (state) => {
+			let currentDate = moment().format('YYYY-MM-DD');
+			let findStatItem = state.items.find(statItem => statItem.date === currentDate);
+
+			if (findStatItem) {
+				findStatItem.stop_count++;
+			}
+		},
+
 		increaseStatWorkSec: (state) => {
 			let currentDate = moment().format('YYYY-MM-DD');
 			let findStatItem = state.items.find(statItem => statItem.date === currentDate);
@@ -74,7 +84,7 @@ export const statSlice = createSlice({
 	}
 })
 
-export const { increaseStatPomodoroCounter, increaseStatStopCounter, increaseStatPauseSec, increaseStatWorkSec, setCurrentDateEmptyItem } = statSlice.actions;
+export const { increaseStatPomodoroCounter, increaseStatStopCounter, increaseStatPauseSec, increaseStatWorkSec, increaseStatStopCount, setCurrentDateEmptyItem } = statSlice.actions;
 
 export const stat = (state: RootState) => state.stat;
 

@@ -9,17 +9,14 @@ export type ITask = {
 	task_finished: number;
 	edit: boolean;
 	selected: boolean;
-	// sequence: number;
 }
 
 interface ITasksState {
 	items: ITask[];
-	// choices: ITask[]
 }
 
 const initialTasksState: ITasksState = {
 	items: [],
-	// choices: []
 }
 
 export const tasksSlice = createSlice({
@@ -84,15 +81,6 @@ export const tasksSlice = createSlice({
 				findTask.task_finished++;
 			}
 		},
-
-		// choiceNews: (state, action: PayloadAction<{ choices: boolean; id: string }>) => {
-		// 	const toggleNews = state.items.find(items => items.id === action.payload.id);
-		// 	if (toggleNews !== undefined) {
-		// 		toggleNews.selected = !toggleNews?.selected
-		// 		state.choices = [...state.items].filter(items => items.selected === true)
-		// 	}
-		// },
-
 	}
 })
 

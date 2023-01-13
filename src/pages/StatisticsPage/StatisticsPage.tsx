@@ -122,7 +122,6 @@ export function StatisticsPage() {
 				<div className={styles.dropDown} ref={StatisticsRef}>
 					<div className={styles.dropDownMenu} onClick={() => { setIsSelectOpen(true) }}>
 						{ChartModes.find(chartMode => chartMode.value === selectedChartMode)?.name}
-
 						<div className={styles.arrow}>
 							{isSelectOpen ?
 								<svg width="16" height="10" viewBox="0 0 16 10" fill="none"

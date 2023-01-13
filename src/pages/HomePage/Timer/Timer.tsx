@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { increaseBreaksCounter } from '../../../store/slice/breaksSlice';
-import { increaseStatPauseSec, increaseStatPomodoroCounter, increaseStatWorkSec } from '../../../store/slice/statSlice';
+import { increaseStatPauseSec, increaseStatPomodoroCounter, increaseStatStopCount, increaseStatWorkSec } from '../../../store/slice/statSlice';
 import { finishTask, removeTask } from '../../../store/slice/tasksSlice';
 import { ConfigTimer } from './ConfigTimer';
 import { HederTimer } from './HederTimer';
@@ -37,6 +37,7 @@ export function Timer() {
 		setTask(tasksList[0]);
 	}, [tasksList]);
 
+
 	//Таймер
 	useEffect(() => {
 		let timerId = setInterval(() => {
@@ -56,6 +57,11 @@ export function Timer() {
 				dispatch(increaseStatPauseSec());
 			}
 
+			//Остановки
+			if (isPaused) {
+				dispatch(increaseStatStopCount());
+			}
+
 			//Если время задачи закончиоось
 			if (isStarted && timerInSeconds === 0) {
 				handleCompleteTask();
@@ -70,7 +76,7 @@ export function Timer() {
 		return () => {
 			clearInterval(timerId);
 		};
-	}, [isStarted, isPaused, isBreakStarted, isBreakPaused, timerInSeconds]);
+	}, [isStarted, isPaused, isBreakStarted, isBreakPaused, timerInSeconds,]);
 
 
 	function handleCompleteTask() {

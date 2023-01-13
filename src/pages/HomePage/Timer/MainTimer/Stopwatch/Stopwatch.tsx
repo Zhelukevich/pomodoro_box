@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './stopwatch.scss'
 
 
@@ -28,7 +28,6 @@ export function Stopwatch({ timerInSeconds, setConfig, isStarted, isPaused }: IS
 		{ [styles.stopwatchGreen]: isStarted },
 		{ [styles.stopwatchRed]: isPaused },
 	);
-
 
 	return (
 		<div className={StopwatchClasses}>

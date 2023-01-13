@@ -2,24 +2,36 @@
 
 .config {
 	display: flex;
+	align-items: center;
 	flex-direction: column;
-	justify-content: space-evenly;
 	width: 100%;
 	height: 100%;
-	padding: 100px 100px;
+	padding: 50px 50px;
 	background-color: $gray-light-f1;
+
+	.title {
+		margin: 0;
+		margin-bottom: 60px;
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		margin-bottom: 30px;
+	}
 
 	.label {
 		display: flex;
-		flex-direction: column;
-		font-weight: 700;
+		align-items: center;
+		font-weight: 500;
 
 		.input {
-			width: 100%;
-			height: 55px;
-			padding: 0 15px;
-			margin-top: 10px;
-			margin-bottom: 25px;
+			width: 60px;
+			height: 30px;
+			margin-right: 10px;
+			padding: 0 5px;
 			border: none;
 			background-color: $white;
 			font-weight: 400;
@@ -35,5 +47,38 @@
 		.input:focus {
 			outline: 1px solid $gray;
 		}
+
+
+	}
+
+	.label:not(:last-child) {
+		margin-bottom: 30px;
+	}
+}
+
+.divBtn {
+	margin-top: auto;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+
+	.btn {
+		padding: 19px 50px;
+		border: none;
+		font-weight: 500;
+		@include text;
+		color: $white;
+	}
+
+	.cancellation {
+		background-color: rgb(220, 62, 34);
+	}
+
+	.reset {
+		background-color: rgb(255, 174, 53);
+	}
+
+	.save {
+		background-color: rgb(168, 182, 79);
 	}
 }

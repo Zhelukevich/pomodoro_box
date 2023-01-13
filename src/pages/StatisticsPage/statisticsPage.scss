@@ -19,6 +19,7 @@
 		.dropDown {
 			position: relative;
 			height: 100%;
+			z-index: 55;
 		}
 
 		.dropDownMenu {
@@ -29,6 +30,7 @@
 			width: 370px;
 			height: 100%;
 			background: $gray-light-f1;
+			filter: drop-shadow(0px 10px 63px rgba(0, 0, 0, 0.07));
 
 			font-weight: 400;
 			@include text;
@@ -54,7 +56,7 @@
 			height: 55px;
 			background: $gray-light-f1;
 			transition: background .2s linear;
-
+			filter: drop-shadow(0px 10px 63px rgba(0, 0, 0, 0.07));
 			border-top: 1px solid #DEDEDE;
 
 			.MenuBtn {

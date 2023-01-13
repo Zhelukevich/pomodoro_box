@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
+import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { setStatePomodoroInMin, setStateSmallBreakTime, setStateLargeBreakTime } from '../../../../store/slice/configSlice';
 import styles from './configTimer.scss';
@@ -44,6 +45,20 @@ export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
 		dispatch(setStateLargeBreakTime(newValue));
 	}
 
+
+	const handleSumbit = (event: FormEvent) => {
+		event.preventDefault();
+	}
+
+	const resetSettings = () => {
+
+	}
+
+	const saveSettings = () => {
+
+	}
+
+
 	useEffect(() => {
 		function handleClick(event: MouseEvent) {
 			if (event.target instanceof Node && !configRef.current?.contains(event.target)) {
@@ -58,38 +73,68 @@ export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
 		}
 	}, []);
 
+	const btn = classNames(
+		styles.btn
+	);
+
+	const cancellation = classNames(
+		styles.btn,
+		styles.cancellation
+	);
+
+	const reset = classNames(
+		styles.btn,
+		styles.reset
+	);
+
+	const save = classNames(
+		styles.btn,
+		styles.save
+	);
+
 	return (
 		<div className={styles.config} ref={configRef}>
-			<label className={styles.label}>	Продолжительность «помидора»
-				<input
-					className={styles.input}
-					type="number"
-					min="1"
-					value={pomodoroInMinValue}
-					onChange={handlePomodoroChange}
-				/>
-			</label>
+			<h3 className={styles.title}>Настройки</h3>
+			<form className={styles.form} onSubmit={handleSumbit}>
+				<label className={styles.label}>
+					<input
+						className={styles.input}
+						type="number"
+						min="1"
+						value={pomodoroInMinValue}
+						onChange={handlePomodoroChange}
+					/>
+					Продолжительность "помидора" (мин.)
+				</label>
 
-			<label className={styles.label}>	Продолжительность короткого перерыва
-				<input
-					className={styles.input}
-					type="number"
-					min="1"
-					value={smallBreakTimeValue}
-					onChange={handleSmallBreakTimeValueChange}
-				/>
-			</label>
+				<label className={styles.label}>
+					<input
+						className={styles.input}
+						type="number"
+						min="1"
+						value={smallBreakTimeValue}
+						onChange={handleSmallBreakTimeValueChange}
+					/>
+					Продолжительность короткого перерыва (мин.)
+				</label>
 
-			<label className={styles.label}>	Продолжительность длинного перерыва
-				<input
-					className={styles.input}
-					type="number"
-					min="1"
-					value={largeBreakTimeValue}
-					onChange={handleLargeBreakTimeValueChange}
-				/>
-			</label>
+				<label className={styles.label}>
+					<input
+						className={styles.input}
+						type="number"
+						min="1"
+						value={largeBreakTimeValue}
+						onChange={handleLargeBreakTimeValueChange}
+					/>
+					Продолжительность длинного перерыва (мин.)
+				</label>
 
+				<div className={styles.divBtn}>
+					<button className={cancellation} onClick={onClose}>Отмена</button>
+					<button className={reset} onClick={resetSettings}>Сброс</button>
+					<button className={save} onClick={saveSettings}>Сохранить</button>
+				</div>
+			</form>
 		</div>
 	)
 }
