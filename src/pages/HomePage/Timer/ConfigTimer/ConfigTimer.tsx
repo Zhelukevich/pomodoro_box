@@ -55,7 +55,9 @@ export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
 	}
 
 	const saveSettings = () => {
-
+		const serializedState = localStorage.getItem("persistentState");
+		if (serializedState === null) return undefined;
+		console.log(JSON.parse(serializedState).config);
 	}
 
 

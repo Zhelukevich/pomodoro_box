@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { useAppDispatch } from './hooks';
 import { setCurrentDateEmptyItem } from './store/slice/statSlice';
+import { CurrentContextProvider } from './context/currentContext';
 
 function AppWrap() {
 	const [mounted, setMounted] = useState(false);
@@ -31,6 +32,7 @@ function AppWrap() {
 					<Layout>
 						<Routes>
 							<Route path="/stat" element={<StatisticsPage />} />
+
 							<Route path="/" element={<HomePage />} />
 						</Routes>
 					</Layout>
@@ -42,6 +44,8 @@ function AppWrap() {
 
 export const App = hot(() => (
 	<Provider store={store}>
-		<AppWrap />
+		<CurrentContextProvider>
+			<AppWrap />
+		</CurrentContextProvider>
 	</Provider>
 ));

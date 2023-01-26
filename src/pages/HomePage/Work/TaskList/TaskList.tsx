@@ -1,4 +1,5 @@
 
+import { kill } from 'process';
 import React from 'react'
 import { useAppSelector } from '../../../../hooks';
 import { ITask } from '../../../../store/slice/tasksSlice';
@@ -14,8 +15,7 @@ export function TaskList() {
 			{tasksList.map((task: ITask) => (
 				<Task
 					key={task.id}
-					task={task}
-				/>
+					task={task} />
 			))}
 		</ul>
 	)

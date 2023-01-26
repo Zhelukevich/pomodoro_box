@@ -18,16 +18,10 @@ export function AddTasks() {
 		id: generateId(),
 		title: value,
 		count: 1,
-		completed: false,
 		edit: false,
 		task_finished: 0,
-		selected: false,
-		// sequence: index()
 	};
 
-	// function index() {
-	// 	return tasksList.indexOf(task) + 1
-	// }
 
 	const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
 		setValue(event.target.value);

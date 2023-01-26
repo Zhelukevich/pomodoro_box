@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Action } from "@remix-run/router";
 import { RootState } from "../store";
 
 
@@ -8,7 +9,6 @@ export type ITask = {
 	count: number;
 	task_finished: number;
 	edit: boolean;
-	selected: boolean;
 }
 
 interface ITasksState {
@@ -81,10 +81,16 @@ export const tasksSlice = createSlice({
 				findTask.task_finished++;
 			}
 		},
+
+		indexTask: (state, action: PayloadAction<string>) => {
+			let id = action.payload;
+			state.items.findIndex(task => task.id === task.id);
+
+		},
 	}
 })
 
-export const { addTask, removeTask, increaseTask, decreaseTask, editTask, renameTask, finishTask } = tasksSlice.actions;
+export const { addTask, removeTask, increaseTask, decreaseTask, editTask, renameTask, finishTask, indexTask } = tasksSlice.actions;
 
 export const tasks = (state: RootState) => state.tasks;
 

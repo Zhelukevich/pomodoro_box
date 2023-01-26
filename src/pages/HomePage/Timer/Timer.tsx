@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { currentContext } from '../../../context/currentContext';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { increaseBreaksCounter } from '../../../store/slice/breaksSlice';
 import { increaseStatPauseSec, increaseStatPomodoroCounter, increaseStatStopCount, increaseStatWorkSec } from '../../../store/slice/statSlice';
-import { finishTask, removeTask } from '../../../store/slice/tasksSlice';
+import { finishTask, ITask, removeTask } from '../../../store/slice/tasksSlice';
 import { ConfigTimer } from './ConfigTimer';
 import { HederTimer } from './HederTimer';
 import { MainTimer } from './MainTimer';
@@ -17,6 +18,7 @@ export function Timer() {
 	const largeBreak = useAppSelector(state => state.config.largeBreakTime);
 
 	const [task, setTask] = useState(tasksList[0]);
+
 	const [currentPomodoro, setCurrentPomodoro] = useState(task.task_finished + 1);
 	const [currentBreak, setCurrentBreak] = useState(breaksCounter + 1);
 	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMin * 60);
@@ -32,10 +34,14 @@ export function Timer() {
 
 	const dispatch = useAppDispatch();
 
+	const { currentTask } = useContext(currentContext)
+
+
 	//Первая задача из списка
 	useEffect(() => {
-		setTask(tasksList[0]);
-	}, [tasksList]);
+		setTask(tasksList[currentTask])
+		console.log(tasksList[currentTask]);
+	});
 
 
 	//Таймер
@@ -58,9 +64,9 @@ export function Timer() {
 			}
 
 			//Остановки
-			if (isPaused) {
-				dispatch(increaseStatStopCount());
-			}
+			// if (isPaused) {
+			// 	dispatch(increaseStatStopCount());
+			// }
 
 			//Если время задачи закончиоось
 			if (isStarted && timerInSeconds === 0) {
@@ -103,6 +109,7 @@ export function Timer() {
 		setIsTimeToBreak(false);
 		setTimerInSeconds(pomodoroInMin * 60);
 		dispatch(increaseBreaksCounter());
+		dispatch(increaseStatStopCount())
 	}
 
 	return (
@@ -112,6 +119,7 @@ export function Timer() {
 				<>
 					<HederTimer
 						task={task}
+						isBreakStarted={isBreakStarted}
 						isTimeToBreak={isTimeToBreak}
 						currentBreak={currentBreak}
 						currentPomodoro={currentPomodoro}
@@ -137,8 +145,6 @@ export function Timer() {
 						setConfig={setConfig} />
 				</>
 			}
-
-
 		</div>
 	)
 }

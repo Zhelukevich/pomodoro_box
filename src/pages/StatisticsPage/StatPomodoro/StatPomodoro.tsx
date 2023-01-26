@@ -12,8 +12,6 @@ type StatPomodoroProps = {
 
 export function StatPomodoro({ pomodoroCnt }: StatPomodoroProps) {
 
-	console.log(pomodoroCnt);
-
 	return (
 		<div className={styles.pomodoro}>
 			{
