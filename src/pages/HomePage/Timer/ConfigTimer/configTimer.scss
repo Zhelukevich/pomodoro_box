@@ -1,6 +1,7 @@
 @import '../../../../styles/global.main.scss';
 
 .config {
+	position: relative;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -9,9 +10,25 @@
 	padding: 50px 50px;
 	background-color: $gray-light-f1;
 
+	.close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+	}
+
+	.close svg path {
+		transition: fill 0.2s linear;
+	}
+
+	.close:hover svg path {
+		fill: $text-color;
+	}
+
+
 	.title {
 		margin: 0;
-		margin-bottom: 60px;
+		margin-bottom: 50px;
+		font-size: 30px;
 	}
 
 	.form {

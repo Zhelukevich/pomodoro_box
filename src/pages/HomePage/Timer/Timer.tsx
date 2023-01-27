@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { currentContext } from '../../../context/currentContext';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { increaseBreaksCounter } from '../../../store/slice/breaksSlice';
+import { setStatePomodoroInMin } from '../../../store/slice/configSlice';
 import { increaseStatPauseSec, increaseStatPomodoroCounter, increaseStatStopCount, increaseStatWorkSec } from '../../../store/slice/statSlice';
-import { finishTask, ITask, removeTask } from '../../../store/slice/tasksSlice';
+import { finishTask, removeTask } from '../../../store/slice/tasksSlice';
 import { ConfigTimer } from './ConfigTimer';
 import { HederTimer } from './HederTimer';
 import { MainTimer } from './MainTimer';
@@ -12,8 +13,10 @@ import styles from './timer.scss';
 
 export function Timer() {
 	const tasksList = useAppSelector(state => state.tasks.items);
-	const pomodoroInMin = useAppSelector(state => state.config.pomodoroInMin);
+
 	const breaksCounter = useAppSelector(state => state.breaks.breakCounter);
+
+	const pomodoroInMin = useAppSelector(state => state.config.pomodoroInMin);
 	const smallBreak = useAppSelector(state => state.config.smallBreakTime);
 	const largeBreak = useAppSelector(state => state.config.largeBreakTime);
 
@@ -22,6 +25,7 @@ export function Timer() {
 	const [currentPomodoro, setCurrentPomodoro] = useState(task.task_finished + 1);
 	const [currentBreak, setCurrentBreak] = useState(breaksCounter + 1);
 	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMin * 60);
+
 	const [breakInMin, setBreakInMin] = useState(breaksCounter % 4 ? largeBreak : smallBreak);
 	const [isPaused, setIsPaused] = useState(false);
 	const [isStarted, setIsStarted] = useState(false);
@@ -33,16 +37,15 @@ export function Timer() {
 	const [config, setConfig] = useState(false);
 
 	const dispatch = useAppDispatch();
-
-	const { currentTask } = useContext(currentContext)
-
+	const { currentTask } = useContext(currentContext);
 
 	//Первая задача из списка
 	useEffect(() => {
-		setTask(tasksList[currentTask])
-		console.log(tasksList[currentTask]);
+		// let index = localStorage.getItem('Current_Task');
+		// if (index === null) return undefined;
+		// let parse: number = JSON.parse(index);
+		setTask(tasksList[currentTask] || tasksList[0])
 	});
-
 
 	//Таймер
 	useEffect(() => {
@@ -63,11 +66,6 @@ export function Timer() {
 				dispatch(increaseStatPauseSec());
 			}
 
-			//Остановки
-			// if (isPaused) {
-			// 	dispatch(increaseStatStopCount());
-			// }
-
 			//Если время задачи закончиоось
 			if (isStarted && timerInSeconds === 0) {
 				handleCompleteTask();
@@ -82,7 +80,7 @@ export function Timer() {
 		return () => {
 			clearInterval(timerId);
 		};
-	}, [isStarted, isPaused, isBreakStarted, isBreakPaused, timerInSeconds,]);
+	}, [isStarted, isPaused, isBreakStarted, isBreakPaused, timerInSeconds, pomodoroInMin]);
 
 
 	function handleCompleteTask() {

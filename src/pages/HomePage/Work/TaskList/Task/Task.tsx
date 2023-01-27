@@ -15,11 +15,6 @@ export function Task({ task }: ITaskProps) {
 	const [taskTitle, setTaskTitle] = useState(task.title);
 
 	const { setCurrentTask } = useContext(currentContext)
-	// const [currentTask, setCurrentTask] = useState(Number);
-
-	// const [currentTask, setCurrentTask] = useState(tasksList[0]);
-
-
 	///////////////////
 	const dispatch = useAppDispatch();
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -33,25 +28,9 @@ export function Task({ task }: ITaskProps) {
 		}
 	}
 	//////////////////////
-
 	const handleCurrent = () => {
 		setCurrentTask(tasksList.indexOf(task))
-
-
-		// setCurrentTask(tasksList.indexOf(task))
-		// if (typeof window !== 'undefined') {
-		// 	localStorage.setItem('Current_Task', currentTask.toString())
-		// }
-
 	};
-
-	// useEffect(() => {
-	// let index = localStorage.getItem('Current_Task');
-	// if (index === null) return undefined;
-	// let parse: number = JSON.parse(index);
-	// setCurrentTask(parse);
-
-	// }, [])
 
 	return (
 		<li className={styles.task}>

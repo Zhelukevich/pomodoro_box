@@ -47,9 +47,11 @@ const ICurrentContextState = {
 export const currentContext = React.createContext<CurrentContextType>(ICurrentContextState);
 
 export function CurrentContextProvider({ children }: { children: React.ReactNode }) {
-	const tasksList = useAppSelector(state => state.tasks.items);
 	const [currentTask, setCurrentTask] = useState(0);
 
+	// if (typeof window !== 'undefined') {
+	// 	localStorage.setItem('Current_Task', currentTask.toString())
+	// }
 
 	return (
 		<currentContext.Provider value={{ currentTask, setCurrentTask }}>
