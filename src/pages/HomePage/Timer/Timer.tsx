@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { currentContext } from '../../../context/currentContext';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { increaseBreaksCounter } from '../../../store/slice/breaksSlice';
-import { setStatePomodoroInMin } from '../../../store/slice/configSlice';
 import { increaseStatPauseSec, increaseStatPomodoroCounter, increaseStatStopCount, increaseStatWorkSec } from '../../../store/slice/statSlice';
-import { finishTask, removeTask } from '../../../store/slice/tasksSlice';
+import { finishTask, ITask, removeTask } from '../../../store/slice/tasksSlice';
 import { ConfigTimer } from './ConfigTimer';
 import { HederTimer } from './HederTimer';
 import { MainTimer } from './MainTimer';
@@ -20,13 +19,18 @@ export function Timer() {
 	const smallBreak = useAppSelector(state => state.config.smallBreakTime);
 	const largeBreak = useAppSelector(state => state.config.largeBreakTime);
 
+	const [pomodoroInMinTime, setPomodoroInMinTime] = useState(pomodoroInMin);
+	const [smallBreakTime, setSmallBreakTime] = useState(smallBreak);
+	const [largeBreakTime, setLargeBreakTime] = useState(largeBreak);
+
 	const [task, setTask] = useState(tasksList[0]);
 
 	const [currentPomodoro, setCurrentPomodoro] = useState(task.task_finished + 1);
 	const [currentBreak, setCurrentBreak] = useState(breaksCounter + 1);
-	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMin * 60);
+	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMinTime * 60);
 
-	const [breakInMin, setBreakInMin] = useState(breaksCounter % 4 ? largeBreak : smallBreak);
+	const [breakInMin, setBreakInMin] = useState(breaksCounter % 4 ? smallBreakTime : largeBreakTime);
+
 	const [isPaused, setIsPaused] = useState(false);
 	const [isStarted, setIsStarted] = useState(false);
 
@@ -113,7 +117,15 @@ export function Timer() {
 	return (
 		<div className={styles.timers}>
 			{config ?
-				<ConfigTimer onClose={() => { setConfig(false) }} /> :
+				<ConfigTimer
+					onClose={() => { setConfig(false); }}
+					pomodoroInMinValue={pomodoroInMinTime}
+					smallBreakTimeValue={smallBreakTime}
+					largeBreakTimeValue={largeBreakTime}
+					setPomodoroInMinValue={setPomodoroInMinTime}
+					setSmallBreakTimeValue={setSmallBreakTime}
+					setLargeBreakTimeValue={setLargeBreakTime}
+				/> :
 				<>
 					<HederTimer
 						task={task}

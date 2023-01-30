@@ -6,44 +6,38 @@ import styles from './configTimer.scss';
 
 interface IConfigTimerProps {
 	onClose?: () => void;
+	pomodoroInMinValue: number;
+	smallBreakTimeValue: number;
+	largeBreakTimeValue: number;
+	setPomodoroInMinValue: React.Dispatch<React.SetStateAction<number>>;
+	setSmallBreakTimeValue: React.Dispatch<React.SetStateAction<number>>;
+	setLargeBreakTimeValue: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const NOOP = () => { };
 
-export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
+export function ConfigTimer({ onClose = NOOP, pomodoroInMinValue, smallBreakTimeValue, largeBreakTimeValue, setPomodoroInMinValue, setSmallBreakTimeValue, setLargeBreakTimeValue }: IConfigTimerProps) {
 	const dispatch = useAppDispatch();
 	const configRef = useRef<HTMLDivElement>(null);
-
-	const pomodoroInMin = useAppSelector(state => state.config.pomodoroInMin);
-	const smallBreakTime = useAppSelector(state => state.config.smallBreakTime);
-	const largeBreakTime = useAppSelector(state => state.config.largeBreakTime);
-
-	const [pomodoroInMinValue, setPomodoroInMinValue] = useState(pomodoroInMin);
-	const [smallBreakTimeValue, setSmallBreakTimeValue] = useState(smallBreakTime);
-	const [largeBreakTimeValue, setLargeBreakTimeValue] = useState(largeBreakTime);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		return parseInt(event.target.value) || 1;
 	}
 
-	function handlePomodoroInMinValueChange(event: React.ChangeEvent<HTMLInputElement>) {
+	function handlePomodoroChange(event: React.ChangeEvent<HTMLInputElement>) {
 		let newValue = handleChange(event);
 		setPomodoroInMinValue(newValue);
-		dispatch(setStatePomodoroInMin(newValue));
 	}
 
 	function handleSmallBreakTimeValueChange(event: React.ChangeEvent<HTMLInputElement>) {
 		let newValue = handleChange(event);
 		setSmallBreakTimeValue(newValue);
-		dispatch(setStateSmallBreakTime(newValue));
 	}
 
 	function handleLargeBreakTimeValueChange(event: React.ChangeEvent<HTMLInputElement>) {
 		let newValue = handleChange(event);
 		setLargeBreakTimeValue(newValue);
-		dispatch(setStateLargeBreakTime(newValue));
 	}
-
 
 	const saveSettings = () => {
 		onClose();
@@ -65,7 +59,7 @@ export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
 		onClose();
 	}
 
-	const handleSumbit = (event: FormEvent) => {
+	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
 	}
 
@@ -107,14 +101,14 @@ export function ConfigTimer({ onClose = NOOP }: IConfigTimerProps) {
 				</svg>
 			</button>
 			<h3 className={styles.title}>Настройки</h3>
-			<form className={styles.form} onSubmit={handleSumbit}>
+			<form className={styles.form} onSubmit={handleSubmit}>
 				<label className={styles.label}>
 					<input
 						className={styles.input}
 						type="number"
 						min="1"
 						value={pomodoroInMinValue}
-						onChange={handlePomodoroInMinValueChange}
+						onChange={handlePomodoroChange}
 					/>
 					Продолжительность "помидора" (мин.)
 				</label>

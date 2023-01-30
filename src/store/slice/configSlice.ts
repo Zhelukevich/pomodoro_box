@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { type } from 'os';
 import { RootState } from '../store';
 
 interface IConfigState {
