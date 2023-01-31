@@ -27,7 +27,16 @@ export function Timer() {
 
 	const [currentPomodoro, setCurrentPomodoro] = useState(task.task_finished + 1);
 	const [currentBreak, setCurrentBreak] = useState(breaksCounter + 1);
-	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMinTime * 60);
+	const [timerInSeconds, setTimerInSeconds] = useState(pomodoroInMin * 60);
+
+
+
+	useEffect(() => {
+		setTimerInSeconds(pomodoroInMin * 60)
+		console.log(pomodoroInMin);
+	}, [pomodoroInMin]);
+
+
 
 	const [breakInMin, setBreakInMin] = useState(breaksCounter % 4 ? smallBreakTime : largeBreakTime);
 
@@ -84,7 +93,7 @@ export function Timer() {
 		return () => {
 			clearInterval(timerId);
 		};
-	}, [isStarted, isPaused, isBreakStarted, isBreakPaused, timerInSeconds, pomodoroInMin]);
+	}, [isStarted, isPaused, isBreakStarted, isBreakPaused, timerInSeconds, pomodoroInMin, pomodoroInMinTime]);
 
 
 	function handleCompleteTask() {
