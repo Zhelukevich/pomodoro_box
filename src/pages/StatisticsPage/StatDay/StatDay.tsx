@@ -11,9 +11,16 @@ type StatPomodoroProps = {
 
 export function StatDay({ selectedDayName, workInSec }: StatPomodoroProps) {
 
-	const hour = Math.floor(workInSec / 60);
-	const min = workInSec % 60;
-	const timeString = `${hour} ${declinationOfNumber(hour, ['часа', 'часов', 'часов'])} ${min} ${declinationOfNumber(min, ['минуты', 'минут', 'минут'])}`
+	const hour = Math.floor((workInSec / 3600) % 60);
+	const min = Math.floor((workInSec / 60) % 60);
+	const sec = workInSec % 60;
+
+	const hourMin = `${hour} ${declinationOfNumber(hour, ['часа', 'часов', 'часов'])} ${min} ${declinationOfNumber(min, ['минуты', 'минут', 'минут'])}`;
+	const minSec = `${min} ${declinationOfNumber(min, ['минуты', 'минут', 'минут'])} ${sec} ${declinationOfNumber(sec, ['секунды', 'секунд', 'секунд'])}`
+	const timeString = hour < 1 ? minSec : hourMin
+
+
+
 
 	return (
 		<div className={styles.totalTime}>
