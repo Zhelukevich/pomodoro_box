@@ -1,6 +1,7 @@
 @import '../../../styles/global.main.scss';
 
 .pause {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -23,6 +24,10 @@
 		}
 
 		.time {
+			position: absolute;
+			left: 25px;
+			right: 25px;
+			bottom: 25px;
 			font-weight: 400;
 			font-size: 64px;
 			line-height: 76px;

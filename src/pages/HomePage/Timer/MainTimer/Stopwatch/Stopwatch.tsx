@@ -8,9 +8,11 @@ interface IStopwatch {
 	setConfig: React.Dispatch<React.SetStateAction<boolean>>;
 	isStarted: boolean;
 	isPaused: boolean;
+	isBreakPaused: boolean;
+	isBreakStarted: boolean;
 }
 
-export function Stopwatch({ timerInSeconds, setConfig, isStarted, isPaused }: IStopwatch) {
+export function Stopwatch({ timerInSeconds, setConfig, isStarted, isPaused, isBreakPaused, isBreakStarted }: IStopwatch) {
 
 	function getFormattedTimer() {
 		let minutes = parseInt(String(timerInSeconds / 60));
@@ -24,9 +26,11 @@ export function Stopwatch({ timerInSeconds, setConfig, isStarted, isPaused }: IS
 
 	const StopwatchClasses = classNames(
 		styles.stopwatch,
-		{ [styles.stopwatchBlack]: !isStarted },
-		{ [styles.stopwatchGreen]: isStarted },
-		{ [styles.stopwatchRed]: isPaused },
+		// !isPaused ? [styles.stopwatchBlack] : [styles.stopwatchRed]
+		// { [styles.stopwatchRed]: isTimeToBreak },
+		{ [styles.stopwatchRed]: isStarted && !isPaused },
+		{ [styles.stopwatchGreen]: isBreakStarted && !isBreakPaused },
+		// { [styles.stopwatchBlack]: isPaused },
 	);
 
 	return (

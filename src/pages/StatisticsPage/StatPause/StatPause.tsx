@@ -8,8 +8,17 @@ type StatPauseProps = {
 }
 
 export function StatPause({ pauseSec }: StatPauseProps) {
-	const hour = Math.floor(pauseSec / 60);
-	const min = pauseSec % 60;
+	// const hour = Math.floor(pauseSec / 60);
+	// const min = pauseSec % 60;
+
+	const hour = Math.floor((pauseSec / 3600) % 60);
+	const min = Math.floor((pauseSec / 60) % 60);
+	const sec = pauseSec % 60;
+
+	const hourMin = `${hour}ч ${min}м`;
+	const minSec = `${min}м ${sec}c`
+	const timePause = hour < 1 ? minSec : hourMin
+
 
 	const pauseClass = classNames(
 		styles.pause,
@@ -28,7 +37,7 @@ export function StatPause({ pauseSec }: StatPauseProps) {
 					Время на паузе
 				</span>
 				<span className={styles.time}>
-					{hour}ч {min}м
+					{timePause}
 				</span>
 			</div>
 			<svg className={svg} width="129" height="129" viewBox="0 0 129 129" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -18,10 +18,10 @@ export function HederTimer({ isTimeToBreak, currentBreak, currentPomodoro, task,
 
 	const headClasses = classNames(
 		styles.hederTimer,
-		{ [styles.hederGreen]: isStarted },
+		// { [styles.hederGreen]: isStarted },
 		{ [styles.hederGray]: !isStarted },
-		{ [styles.hederRed]: isPaused, },
-		// { [styles.hederGreen]: isBreakStarted, },
+		{ [styles.hederRed]: isStarted },
+		{ [styles.hederGreen]: isBreakStarted, },
 		// { [styles.hederGreen]: !isBreakStarted, },
 	);
 

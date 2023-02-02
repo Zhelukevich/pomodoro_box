@@ -53,6 +53,8 @@ export function MainTimer(props: IMainTimer) {
 				setConfig={setConfig}
 				isStarted={isStarted}
 				isPaused={isPaused}
+				isBreakPaused={isBreakPaused}
+				isBreakStarted={isBreakStarted}
 			/>
 			<TitleStopwatch
 				task={task}
