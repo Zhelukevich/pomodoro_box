@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://Zhelukevich.github.io/pomodoro_box",
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development webpack-dev-server webpack --config webpack.config.js",
-    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "deploy": "gh-pages -d build",
     "dev": "cross-env NODE_ENV=development webpack-dev-server"
   },
   "author": "Zhelukevich",
@@ -33,6 +35,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^3.4.2",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.56.0",
