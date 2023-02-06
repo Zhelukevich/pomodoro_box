@@ -1,7 +1,7 @@
 # 🍅 Менеджер задач с таймером по технике помодоро
-https://zhelukevich.github.io/pomodoro_box/
 
 **DESKTOP LAYOUT**
+https://zhelukevich.github.io/pomodoro_box/
 
 ## Описание
 
