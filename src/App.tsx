@@ -29,7 +29,7 @@ export function App() {
           <Layout>
             <Routes>
               <Route path="/stat" element={<StatisticsPage />} />
-              <Route path="/" element={<HomePage />} />
+              <Route path="/*" element={<HomePage />} />
             </Routes>
           </Layout>
         </BrowserRouter>

@@ -5,9 +5,10 @@
   "main": "index.js",
   "homepage": "https://Zhelukevich.github.io/pomodoro_box",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "deploy": "gh-pages -d build",
     "dev": "cross-env NODE_ENV=development webpack-dev-server"
   },
   "author": "Zhelukevich",

@@ -99,3 +99,13 @@
 		background-color: rgb(168, 182, 79);
 	}
 }
+
+@media (min-width: 992px) and (max-width: 1100px) {
+	.btn {
+		padding: 19px 30px !important;
+		border: none;
+		font-weight: 500;
+		@include text;
+		color: $white;
+	}
+}
